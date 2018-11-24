@@ -5,7 +5,7 @@ namespace Kino.Models
 {
     public partial class ProdukcijskaZalozba
     {
-        public decimal IdZalozba { get; set; }
+        public int IdZalozba { get; set; }
         public string Ime { get; set; }
     }
 }

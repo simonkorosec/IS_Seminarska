@@ -5,7 +5,7 @@ namespace Kino.Models
 {
     public partial class Tehnologija
     {
-        public decimal IdTehnologije { get; set; }
+        public int IdTehnologije { get; set; }
         public string ImeTehnologije { get; set; }
     }
 }

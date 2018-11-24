@@ -5,9 +5,9 @@ namespace Kino.Models
 {
     public partial class Naslov
     {
-        public decimal IdNaslov { get; set; }
-        public decimal StPoste { get; set; }
+        public int IdNaslov { get; set; }
+        public int StPoste { get; set; }
         public string Ulica { get; set; }
-        public decimal HisnaSt { get; set; }
+        public int HisnaSt { get; set; }
     }
 }

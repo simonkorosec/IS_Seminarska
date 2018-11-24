@@ -5,9 +5,9 @@ namespace Kino.Models
 {
     public partial class Zaposleni
     {
-        public decimal IdZaposleni { get; set; }
-        public decimal IdNaslov { get; set; }
-        public decimal IdPozicije { get; set; }
+        public int IdZaposleni { get; set; }
+        public int IdNaslov { get; set; }
+        public int IdPozicije { get; set; }
         public string Ime { get; set; }
         public DateTime DatumRojstva { get; set; }
         public double UrnaPostavka { get; set; }

@@ -5,9 +5,9 @@ namespace Kino.Models
 {
     public partial class Sedez
     {
-        public decimal IdSedeza { get; set; }
-        public decimal IdDvorane { get; set; }
-        public decimal Vrsta { get; set; }
-        public decimal Stevilka { get; set; }
+        public int IdSedeza { get; set; }
+        public int IdDvorane { get; set; }
+        public int? Vrsta { get; set; }
+        public int? Stevilka { get; set; }
     }
 }

@@ -5,8 +5,8 @@ namespace Kino.Models
 {
     public partial class Kolosej
     {
-        public decimal IdKolosej { get; set; }
-        public decimal IdNaslov { get; set; }
+        public int IdKolosej { get; set; }
+        public int IdNaslov { get; set; }
         public string Ime { get; set; }
     }
 }

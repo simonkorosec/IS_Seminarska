@@ -1,0 +1,54 @@
+﻿@model Kino.Models.Film
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Film</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdZalozba)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdZalozba)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdOmejitve)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdOmejitve)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdOsebjeFilma)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdOsebjeFilma)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Naslov)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naslov)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Leto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Leto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CasTrajanja)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CasTrajanja)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdFilm">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
