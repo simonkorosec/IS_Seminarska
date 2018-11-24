@@ -9,7 +9,7 @@ namespace Kino.Models
         public decimal IdKolosej { get; set; }
         public decimal IdTehnologije { get; set; }
         public string Ime { get; set; }
-        public decimal StVrst { get; set; }
-        public decimal StSedezovNaVrsto { get; set; }
+        public decimal? StVrst { get; set; }
+        public decimal? StSedezovNaVrsto { get; set; }
     }
 }

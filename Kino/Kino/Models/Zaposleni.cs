@@ -10,6 +10,6 @@ namespace Kino.Models
         public decimal IdPozicije { get; set; }
         public string Ime { get; set; }
         public DateTime DatumRojstva { get; set; }
-        public double? UrnaPostavka { get; set; }
+        public double UrnaPostavka { get; set; }
     }
 }

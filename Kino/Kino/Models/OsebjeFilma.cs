@@ -7,6 +7,6 @@ namespace Kino.Models
     {
         public decimal IdOsebjeFilma { get; set; }
         public string Ime { get; set; }
-        public DateTime DatumRojstva { get; set; }
+        public DateTime? DatumRojstva { get; set; }
     }
 }

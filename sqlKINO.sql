@@ -26,10 +26,10 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Film')
-            and   name  = 'Reziseral_FK'
+            and   name  = 'Režiseral_FK'
             and   indid > 0
             and   indid < 255)
-   drop index Film.Reziseral_FK
+   drop index Film.Režiseral_FK
 go
 
 if exists (select 1
@@ -155,9 +155,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('Poste')
+           where  id = object_id('Pošte')
             and   type = 'U')
-   drop table Poste
+   drop table Pošte
 go
 
 if exists (select 1
@@ -212,25 +212,25 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('"Produkcijska Zalozba"')
+           where  id = object_id('"Produkcijska Založba"')
             and   type = 'U')
-   drop table "Produkcijska Zalozba"
+   drop table "Produkcijska Založba"
 go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('Sedez')
+           where  id    = object_id('Sedež')
             and   name  = 'Se nahaja v_FK'
             and   indid > 0
             and   indid < 255)
-   drop index Sedez."Se nahaja v_FK"
+   drop index Sedež."Se nahaja v_FK"
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('Sedez')
+           where  id = object_id('Sedež')
             and   type = 'U')
-   drop table Sedez
+   drop table Sedež
 go
 
 if exists (select 1
@@ -286,9 +286,9 @@ create table Dvorana (
    ID_Dvorane           numeric              identity,
    ID_Kolosej           numeric              not null,
    ID_Tehnologije       numeric              not null,
-   Ime                  char(100)            not null,
-   St_Vrst              decimal              not null,
-   st_sedezov_na_vrsto  decimal              not null,
+   Ime                  char(100)            null,
+   Št_Vrst              decimal              null,
+   št_sedežov_na_vrsto  decimal              null,
    constraint PK_DVORANA primary key nonclustered (ID_Dvorane)
 )
 go
@@ -314,12 +314,12 @@ go
 /*==============================================================*/
 create table Film (
    ID_Film              numeric              identity,
-   ID_Zalozba           numeric              not null,
-   ID_Omejitve          decimal              not null,
+   ID_Založba           numeric              not null,
+   ID_Omejitve          numeric              not null,
    ID_Osebje_Filma      numeric              not null,
-   Naslov               char(256)            not null,
+   Naslov               char(256)            null,
    Leto                 datetime             null,
-   Cas_trajanja         datetime             null,
+   Čas_trajanja         datetime             null,
    constraint PK_FILM primary key nonclustered (ID_Film)
 )
 go
@@ -336,14 +336,14 @@ go
 /* Index: Produciral_FK                                         */
 /*==============================================================*/
 create index Produciral_FK on Film (
-ID_Zalozba ASC
+ID_Založba ASC
 )
 go
 
 /*==============================================================*/
-/* Index: Reziseral_FK                                          */
+/* Index: Režiseral_FK                                          */
 /*==============================================================*/
-create index Reziseral_FK on Film (
+create index Režiseral_FK on Film (
 ID_Osebje_Filma ASC
 )
 go
@@ -378,14 +378,14 @@ go
 /* Table: Karta                                                 */
 /*==============================================================*/
 create table Karta (
-   ID_Sedeza            numeric              not null,
+   ID_Sedeža            numeric              not null,
    ID_Film              numeric              not null,
    ID_Dvorane           numeric              not null,
-   Cas_Zacetka          datetime             not null,
-   Cas_Konca            datetime             not null,
+   Čas_Začetka          datetime             not null,
+   Čas_Konca            datetime             not null,
    Datum                datetime             not null,
    Cena                 float                null,
-   constraint PK_KARTA primary key (ID_Sedeza, ID_Film, ID_Dvorane, Cas_Zacetka, Cas_Konca, Datum)
+   constraint PK_KARTA primary key (ID_Sedeža, ID_Film, ID_Dvorane, Čas_Začetka, Čas_Konca, Datum)
 )
 go
 
@@ -393,7 +393,7 @@ go
 /* Index: "Velja za_FK"                                         */
 /*==============================================================*/
 create index "Velja za_FK" on Karta (
-ID_Sedeza ASC
+ID_Sedeža ASC
 )
 go
 
@@ -403,8 +403,8 @@ go
 create index Velja_za_predstavo_FK on Karta (
 ID_Film ASC,
 ID_Dvorane ASC,
-Cas_Zacetka ASC,
-Cas_Konca ASC,
+Čas_Začetka ASC,
+Čas_Konca ASC,
 Datum ASC
 )
 go
@@ -433,9 +433,9 @@ go
 /*==============================================================*/
 create table Naslov (
    ID_Naslov            numeric              identity,
-   St_Poste             int                  not null,
+   Št_Pošte             numeric              not null,
    Ulica                char(256)            not null,
-   "Hisna St."          decimal              not null,
+   "Hišna Št."          decimal              not null,
    constraint PK_NASLOV primary key nonclustered (ID_Naslov)
 )
 go
@@ -444,7 +444,7 @@ go
 /* Index: "Nahaja v_FK"                                         */
 /*==============================================================*/
 create index "Nahaja v_FK" on Naslov (
-St_Poste ASC
+Št_Pošte ASC
 )
 go
 
@@ -453,8 +453,8 @@ go
 /*==============================================================*/
 create table "Osebje Filma" (
    ID_Osebje_Filma      numeric              identity,
-   Ime                  char(100)            not null,
-   "Datum Rojstva"      datetime             not null,
+   Ime                  char(100)            null,
+   "Datum Rojstva"      datetime             null,
    constraint "PK_OSEBJE FILMA" primary key nonclustered (ID_Osebje_Filma)
 )
 go
@@ -464,18 +464,18 @@ go
 /*==============================================================*/
 create table Pozicija (
    ID_Pozicije          numeric              identity,
-   Ime_Pozicije         char(256)            not null,
+   Ime_Pozicije         char(256)            null,
    constraint PK_POZICIJA primary key nonclustered (ID_Pozicije)
 )
 go
 
 /*==============================================================*/
-/* Table: Poste                                                 */
+/* Table: Pošte                                                 */
 /*==============================================================*/
-create table Poste (
-   St_Poste             int                  not null,
+create table Pošte (
+   Št_Pošte             numeric              identity,
    Kraj                 char(256)            not null,
-   constraint PK_POSTE primary key nonclustered (St_Poste)
+   constraint PK_POŠTE primary key nonclustered (Št_Pošte)
 )
 go
 
@@ -485,10 +485,10 @@ go
 create table Predstava (
    ID_Film              numeric              not null,
    ID_Dvorane           numeric              not null,
-   Cas_Zacetka          datetime             not null,
-   Cas_Konca            datetime             not null,
+   Čas_Začetka          datetime             not null,
+   Čas_Konca            datetime             not null,
    Datum                datetime             not null,
-   constraint PK_PREDSTAVA primary key nonclustered (ID_Film, ID_Dvorane, Cas_Zacetka, Cas_Konca, Datum)
+   constraint PK_PREDSTAVA primary key nonclustered (ID_Film, ID_Dvorane, Čas_Začetka, Čas_Konca, Datum)
 )
 go
 
@@ -535,31 +535,31 @@ ID_Film ASC
 go
 
 /*==============================================================*/
-/* Table: "Produkcijska Zalozba"                                */
+/* Table: "Produkcijska Založba"                                */
 /*==============================================================*/
-create table "Produkcijska Zalozba" (
-   ID_Zalozba           numeric              identity,
-   Ime                  char(100)            not null,
-   constraint "PK_PRODUKCIJSKA ZALOZBA" primary key nonclustered (ID_Zalozba)
+create table "Produkcijska Založba" (
+   ID_Založba           numeric              identity,
+   Ime                  char(100)            null,
+   constraint "PK_PRODUKCIJSKA ZALOŽBA" primary key nonclustered (ID_Založba)
 )
 go
 
 /*==============================================================*/
-/* Table: Sedez                                                 */
+/* Table: Sedež                                                 */
 /*==============================================================*/
-create table Sedez (
-   ID_Sedeza            numeric              identity,
+create table Sedež (
+   ID_Sedeža            numeric              identity,
    ID_Dvorane           numeric              not null,
-   Vrsta                decimal              not null,
-   Stevilka             decimal              not null,
-   constraint PK_SEDEZ primary key nonclustered (ID_Sedeza)
+   Vrsta                decimal              null,
+   Številka             decimal              null,
+   constraint PK_SEDEŽ primary key nonclustered (ID_Sedeža)
 )
 go
 
 /*==============================================================*/
 /* Index: "Se nahaja v_FK"                                      */
 /*==============================================================*/
-create index "Se nahaja v_FK" on Sedez (
+create index "Se nahaja v_FK" on Sedež (
 ID_Dvorane ASC
 )
 go
@@ -568,8 +568,8 @@ go
 /* Table: "Starostna Omejitev"                                  */
 /*==============================================================*/
 create table "Starostna Omejitev" (
-   ID_Omejitve          decimal              not null,
-   Ime                  char(100)            not null,
+   ID_Omejitve          numeric              identity,
+   Ime                  char(100)            null,
    constraint "PK_STAROSTNA OMEJITEV" primary key nonclustered (ID_Omejitve)
 )
 go
@@ -579,7 +579,7 @@ go
 /*==============================================================*/
 create table Tehnologija (
    ID_Tehnologije       numeric              identity,
-   Ime_Tehnologije      char(256)            not null,
+   Ime_Tehnologije      char(256)            null,
    constraint PK_TEHNOLOGIJA primary key nonclustered (ID_Tehnologije)
 )
 go
@@ -593,7 +593,7 @@ create table Zaposleni (
    ID_Pozicije          numeric              not null,
    Ime                  char(100)            not null,
    "Datum Rojstva"      datetime             not null,
-   Urna_Postavka        float                null,
+   Urna_Postavka        float                not null,
    constraint PK_ZAPOSLENI primary key nonclustered (ID_Zaposleni)
 )
 go
@@ -619,7 +619,7 @@ go
 /*==============================================================*/
 create table Zvrst (
    ID_Zvrst             numeric              identity,
-   Ime                  char(100)            not null,
+   Ime                  char(100)            null,
    constraint PK_ZVRST primary key nonclustered (ID_Zvrst)
 )
 go

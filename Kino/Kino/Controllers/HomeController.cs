@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Kino.Models;
 using Microsoft.AspNetCore.Mvc;
 using Kino.Models;
 

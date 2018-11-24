@@ -37,7 +37,8 @@ namespace Kino.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=KinoDatabase;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=KinoDatabase;Integrated Security=True;");
             }
         }
 
@@ -68,12 +69,11 @@ namespace Kino.Models
                     .HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.Ime)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.StSedezovNaVrsto)
-                    .HasColumnName("st_sedezov_na_vrsto")
+                    .HasColumnName("St_sedezov_na_vrsto")
                     .HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.StVrst)
@@ -90,7 +90,7 @@ namespace Kino.Models
                     .HasName("Omejitev_FK");
 
                 entity.HasIndex(e => e.IdOsebjeFilma)
-                    .HasName("Reziseral_FK");
+                    .HasName("Režiseral_FK");
 
                 entity.HasIndex(e => e.IdZalozba)
                     .HasName("Produciral_FK");
@@ -106,7 +106,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdOmejitve)
                     .HasColumnName("ID_Omejitve")
-                    .HasColumnType("decimal(18, 0)");
+                    .HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.IdOsebjeFilma)
                     .HasColumnName("ID_Osebje_Filma")
@@ -119,7 +119,6 @@ namespace Kino.Models
                 entity.Property(e => e.Leto).HasColumnType("datetime");
 
                 entity.Property(e => e.Naslov)
-                    .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false);
             });
@@ -218,7 +217,9 @@ namespace Kino.Models
                     .HasColumnName("Hisna St.")
                     .HasColumnType("decimal(18, 0)");
 
-                entity.Property(e => e.StPoste).HasColumnName("St_Poste");
+                entity.Property(e => e.StPoste)
+                    .HasColumnName("St_Poste")
+                    .HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.Ulica)
                     .IsRequired()
@@ -243,7 +244,6 @@ namespace Kino.Models
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.Ime)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
@@ -274,7 +274,6 @@ namespace Kino.Models
                     .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ImePozicije)
-                    .IsRequired()
                     .HasColumnName("Ime_Pozicije")
                     .HasMaxLength(256)
                     .IsUnicode(false);
@@ -378,10 +377,10 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdOmejitve)
                     .HasColumnName("ID_Omejitve")
-                    .HasColumnType("decimal(18, 0)");
+                    .HasColumnType("numeric(18, 0)")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Ime)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
@@ -397,7 +396,6 @@ namespace Kino.Models
                     .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ImeTehnologije)
-                    .IsRequired()
                     .HasColumnName("Ime_Tehnologije")
                     .HasMaxLength(256)
                     .IsUnicode(false);
@@ -450,7 +448,6 @@ namespace Kino.Models
                     .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Ime)
-                    .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
