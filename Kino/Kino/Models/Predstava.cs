@@ -7,8 +7,8 @@ namespace Kino.Models
     {
         public int IdFilm { get; set; }
         public int IdDvorane { get; set; }
-        public DateTime CasZacetka { get; set; }
-        public DateTime CasKonca { get; set; }
+        public TimeSpan CasZacetka { get; set; }
+        public TimeSpan CasKonca { get; set; }
         public DateTime Datum { get; set; }
     }
 }

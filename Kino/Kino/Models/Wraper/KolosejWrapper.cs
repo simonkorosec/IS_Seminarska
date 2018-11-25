@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
 namespace Kino.Models.Wraper {
-    public class KolosejWrapper {
+    public class KolosejWrapper
+    {
         public Dvorana Dvorana { get; set; }
         public Film Film { get; set; }
         public IgraV IgraV { get; set; }
@@ -21,5 +22,11 @@ namespace Kino.Models.Wraper {
         public Zvrst Zvrst { get; set; }
 
         public IEnumerable<Tehnologija> TehnologijaList { get; set; }
+        public IEnumerable<Dvorana> DvoranaList { get; set; }
+        public IEnumerable<Zvrst> ZvrstList { get; set; }
+        public IEnumerable<ProdukcijskaZalozba> ZalozbaList { get; set; }
+        public IEnumerable<StarostnaOmejitev> StarostnaOmejitevList { get; set; }
+        public IEnumerable<OsebjeFilma> OsebjeFilmaList { get; set; }
+        public IEnumerable<Film> FilmList { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Kino.Models.Film>
+﻿@model IEnumerable<Kino.Models.Wraper.KolosejWrapper>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Filmi</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdZalozba)
+                @Html.DisplayNameFor(model => model.ProdukcijskaZalozba.Ime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdOmejitve)
+                @Html.DisplayNameFor(model => model.StarostnaOmejitev.Ime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdOsebjeFilma)
+                @Html.DisplayNameFor(model => model.Film.IdOsebjeFilma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Naslov)
+                @Html.DisplayNameFor(model => model.Film.Naslov)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Leto)
+                @Html.DisplayNameFor(model => model.Film.Leto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CasTrajanja)
+                @Html.DisplayNameFor(model => model.Film.CasTrajanja)
             </th>
             <th></th>
         </tr>
@@ -37,27 +37,27 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdZalozba)
+                @Html.DisplayFor(modelItem => item.ProdukcijskaZalozba.Ime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdOmejitve)
+                @Html.DisplayFor(modelItem => item.StarostnaOmejitev.Ime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdOsebjeFilma)
+                @Html.DisplayFor(modelItem => item.OsebjeFilma.Ime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Naslov)
+                @Html.DisplayFor(modelItem => item.Film.Naslov)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Leto)
+                @Html.DisplayFor(modelItem => item.Film.Leto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CasTrajanja)
+                @Html.DisplayFor(modelItem => item.Film.CasTrajanja)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdFilm">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdFilm">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdFilm">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Film.IdFilm">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Film.IdFilm">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Film.IdFilm">Delete</a>
             </td>
         </tr>
 }

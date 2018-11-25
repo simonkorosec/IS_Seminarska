@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Kino.Models.Dvorana>
+﻿@model Kino.Models.Wraper.KolosejWrapper
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dvorane";
 }
 
-<h2>Index</h2>
+<h2>Dvorane</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,31 +13,35 @@
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IdKolosej)
+            @Html.DisplayNameFor(model => model.Dvorana.IdKolosej)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdTehnologije)
+            @Html.DisplayNameFor(model => model.Tehnologija.ImeTehnologije)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ime)
+            @Html.DisplayNameFor(model => model.Dvorana.Ime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StVrst)
+            @Html.DisplayNameFor(model => model.Dvorana.StVrst)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StSedezovNaVrsto)
+            @Html.DisplayNameFor(model => model.Dvorana.StSedezovNaVrsto)
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
+    @foreach (var item in Model.DvoranaList) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.IdKolosej)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdTehnologije)
+                @foreach (var teh in Model.TehnologijaList) {
+                    if (teh.IdTehnologije == item.IdTehnologije) {
+                        @Html.DisplayFor(modelItem => teh.ImeTehnologije)
+                    }
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ime)
@@ -51,8 +55,7 @@
             <td>
 
                 <a asp-action="Edit" asp-route-id="@item.IdDvorane">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.IdDvorane">Details</a> |
-                    
+                <a asp-action="Details" asp-route-id="@item.IdDvorane">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdDvorane">Delete</a>
             </td>
         </tr>

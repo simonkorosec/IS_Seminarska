@@ -31,6 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Ime)
             </td>
             <td>
+                @* Chose - kao tega bo izbrov pa tega ureju, dele sam dvorane pokaže odvisn na to kva izbereš *@
                 <a asp-action="Chose" asp-route-id="@item.IdKolosej">Chose</a> |
                 <a asp-action="Edit" asp-route-id="@item.IdKolosej">Edit</a> |
                 <a asp-action="Delete" asp-route-id="@item.IdKolosej">Delete</a>

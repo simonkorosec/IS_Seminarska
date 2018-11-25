@@ -61,9 +61,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdTehnologije).HasColumnName("ID_Tehnologije");
 
-                entity.Property(e => e.Ime)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Ime).HasColumnType("text");
 
                 entity.Property(e => e.StSedezovNaVrsto).HasColumnName("st_sedezov_na_vrsto");
 
@@ -86,9 +84,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdFilm).HasColumnName("ID_Film");
 
-                entity.Property(e => e.CasTrajanja)
-                    .HasColumnName("Cas_trajanja")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CasTrajanja).HasColumnName("Cas_trajanja");
 
                 entity.Property(e => e.IdOmejitve).HasColumnName("ID_Omejitve");
 
@@ -96,11 +92,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdZalozba).HasColumnName("ID_Zalozba");
 
-                entity.Property(e => e.Leto).HasColumnType("datetime");
-
-                entity.Property(e => e.Naslov)
-                    .HasMaxLength(256)
-                    .IsUnicode(false);
+                entity.Property(e => e.Naslov).HasColumnType("text");
             });
 
             modelBuilder.Entity<IgraV>(entity =>
@@ -136,15 +128,11 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdDvorane).HasColumnName("ID_Dvorane");
 
-                entity.Property(e => e.CasZacetka)
-                    .HasColumnName("Cas_Zacetka")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CasZacetka).HasColumnName("Cas_Zacetka");
 
-                entity.Property(e => e.CasKonca)
-                    .HasColumnName("Cas_Konca")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.CasKonca).HasColumnName("Cas_Konca");
 
-                entity.Property(e => e.Datum).HasColumnType("datetime");
+                entity.Property(e => e.Datum).HasColumnType("date");
             });
 
             modelBuilder.Entity<Kolosej>(entity =>
@@ -161,8 +149,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.Ime)
                     .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .HasColumnType("text");
             });
 
             modelBuilder.Entity<Naslov>(entity =>
@@ -181,8 +168,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.Ulica)
                     .IsRequired()
-                    .HasMaxLength(256)
-                    .IsUnicode(false);
+                    .HasColumnType("text");
             });
 
             modelBuilder.Entity<OsebjeFilma>(entity =>
@@ -198,9 +184,7 @@ namespace Kino.Models
                     .HasColumnName("Datum Rojstva")
                     .HasColumnType("datetime");
 
-                entity.Property(e => e.Ime)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Ime).HasColumnType("text");
             });
 
             modelBuilder.Entity<Poste>(entity =>
@@ -208,7 +192,9 @@ namespace Kino.Models
                 entity.HasKey(e => e.StPoste)
                     .ForSqlServerIsClustered(false);
 
-                entity.Property(e => e.StPoste).HasColumnName("St_Poste");
+                entity.Property(e => e.StPoste)
+                    .HasColumnName("St_Poste")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Kraj)
                     .IsRequired()
@@ -225,8 +211,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.ImePozicije)
                     .HasColumnName("Ime_Pozicije")
-                    .HasMaxLength(256)
-                    .IsUnicode(false);
+                    .HasColumnType("text");
             });
 
             modelBuilder.Entity<Predstava>(entity =>
@@ -245,14 +230,12 @@ namespace Kino.Models
                 entity.Property(e => e.IdDvorane).HasColumnName("ID_Dvorane");
 
                 entity.Property(e => e.CasZacetka)
-                    .HasColumnName("Cas_Zacetka")
-                    .HasColumnType("datetime");
+                    .HasColumnName("Cas_Zacetka");
 
                 entity.Property(e => e.CasKonca)
-                    .HasColumnName("Cas_Konca")
-                    .HasColumnType("datetime");
+                    .HasColumnName("Cas_Konca");
 
-                entity.Property(e => e.Datum).HasColumnType("datetime");
+                entity.Property(e => e.Datum).HasColumnType("date");
             });
 
             modelBuilder.Entity<Pripada>(entity =>
@@ -279,9 +262,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdZalozba).HasColumnName("ID_Zalozba");
 
-                entity.Property(e => e.Ime)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Ime).HasColumnType("text");
             });
 
             modelBuilder.Entity<Sedez>(entity =>
@@ -306,9 +287,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdOmejitve).HasColumnName("ID_Omejitve");
 
-                entity.Property(e => e.Ime)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Ime).HasColumnType("text");
             });
 
             modelBuilder.Entity<Tehnologija>(entity =>
@@ -320,8 +299,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.ImeTehnologije)
                     .HasColumnName("Ime_Tehnologije")
-                    .HasMaxLength(256)
-                    .IsUnicode(false);
+                    .HasColumnType("text");
             });
 
             modelBuilder.Entity<Zaposleni>(entity =>
@@ -347,8 +325,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.Ime)
                     .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                    .HasColumnType("text");
 
                 entity.Property(e => e.UrnaPostavka).HasColumnName("Urna_Postavka");
             });
@@ -360,9 +337,7 @@ namespace Kino.Models
 
                 entity.Property(e => e.IdZvrst).HasColumnName("ID_Zvrst");
 
-                entity.Property(e => e.Ime)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Ime).HasColumnType("text");
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿@model Kino.Models.Film
+﻿@model Kino.Models.Wraper.KolosejWrapper
 
 @{
     ViewData["Title"] = "Create";
@@ -13,34 +13,49 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdZalozba" class="control-label"></label>
-                <input asp-for="IdZalozba" class="form-control" />
-                <span asp-validation-for="IdZalozba" class="text-danger"></span>
+                <label asp-for="Film.IdZalozba" class="control-label"></label>
+                <select asp-for="Film.IdZalozba" class="selectpicker">
+                    @foreach (var zalozba in Model.ZalozbaList)
+                    {
+                        <option value="@zalozba.IdZalozba">@zalozba.Ime</option>
+                    }
+                </select>
+                <span asp-validation-for="Film.IdZalozba" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdOmejitve" class="control-label"></label>
-                <input asp-for="IdOmejitve" class="form-control" />
-                <span asp-validation-for="IdOmejitve" class="text-danger"></span>
+                <label asp-for="Film.IdOmejitve" class="control-label"></label>
+                <select asp-for="Film.IdOmejitve" class="selectpicker">
+                    @foreach (var omejitev in Model.StarostnaOmejitevList)
+                    {
+                        <option value="@omejitev.IdOmejitve">@omejitev.Ime</option>
+                    }
+                </select>
+                <span asp-validation-for="Film.IdOmejitve" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdOsebjeFilma" class="control-label"></label>
-                <input asp-for="IdOsebjeFilma" class="form-control" />
-                <span asp-validation-for="IdOsebjeFilma" class="text-danger"></span>
+                <label asp-for="Film.IdOsebjeFilma" class="control-label"></label>
+                <select asp-for="Film.IdOsebjeFilma" class="selectpicker">
+                    @foreach (var oseba in Model.OsebjeFilmaList)
+                    {
+                        <option value="@oseba.IdOsebjeFilma">@oseba.Ime</option>
+                    }
+                </select>
+                <span asp-validation-for="Film.IdOsebjeFilma" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Naslov" class="control-label"></label>
-                <input asp-for="Naslov" class="form-control" />
-                <span asp-validation-for="Naslov" class="text-danger"></span>
+                <label asp-for="Film.Naslov" class="control-label"></label>
+                <input asp-for="Film.Naslov" class="form-control" />
+                <span asp-validation-for="Film.Naslov" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Leto" class="control-label"></label>
-                <input asp-for="Leto" class="form-control" />
-                <span asp-validation-for="Leto" class="text-danger"></span>
+                <label asp-for="Film.Leto" class="control-label"></label>
+                <input asp-for="Film.Leto" class="form-control" type="number" min="1900" max="2099" step="1" value="2016"/>
+                <span asp-validation-for="Film.Leto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CasTrajanja" class="control-label"></label>
-                <input asp-for="CasTrajanja" class="form-control" />
-                <span asp-validation-for="CasTrajanja" class="text-danger"></span>
+                <label asp-for="Film.CasTrajanja" class="control-label"></label>
+                <input asp-for="Film.CasTrajanja" class="form-control" type="number" min="1" max="600" step="1" />
+                <span asp-validation-for="Film.CasTrajanja" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

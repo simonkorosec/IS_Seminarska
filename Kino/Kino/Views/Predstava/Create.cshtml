@@ -1,5 +1,4 @@
-﻿@model Kino.Models.Predstava
-
+﻿@model Kino.Models.Wraper.KolosejWrapper
 @{
     ViewData["Title"] = "Create";
 }
@@ -13,29 +12,39 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdFilm" class="control-label"></label>
-                <input asp-for="IdFilm" class="form-control" />
-                <span asp-validation-for="IdFilm" class="text-danger"></span>
+                <label asp-for="Predstava.IdFilm" class="control-label">Ime Filma</label>
+                <select asp-for="Predstava.IdFilm" class="selectpicker">
+                    @foreach (var film in Model.FilmList)
+                    {
+                        <option value="@film.IdFilm">@film.Naslov</option>
+                    }
+                </select>
+                <span asp-validation-for="Predstava.IdFilm" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdDvorane" class="control-label"></label>
-                <input asp-for="IdDvorane" class="form-control" />
-                <span asp-validation-for="IdDvorane" class="text-danger"></span>
+                <label asp-for="Predstava.IdDvorane" class="control-label">Ime Dvorane</label>
+                <select asp-for="Predstava.IdDvorane" class="selectpicker">
+                    @foreach (var dvorana in Model.DvoranaList)
+                    {
+                        <option value="@dvorana.IdDvorane">@dvorana.Ime</option>
+                    }
+                </select>
+                <span asp-validation-for="Predstava.IdDvorane" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CasZacetka" class="control-label"></label>
-                <input asp-for="CasZacetka" class="form-control" />
-                <span asp-validation-for="CasZacetka" class="text-danger"></span>
+                <label asp-for="Predstava.CasZacetka" class="control-label" ></label>
+                <input asp-for="Predstava.CasZacetka" class="form-control" type="time" />
+                <span asp-validation-for="Predstava.CasZacetka" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CasKonca" class="control-label"></label>
-                <input asp-for="CasKonca" class="form-control" />
-                <span asp-validation-for="CasKonca" class="text-danger"></span>
+                <label asp-for="Predstava.CasKonca" class="control-label"></label>
+                <input asp-for="Predstava.CasKonca" class="form-control" type="time" />
+                <span asp-validation-for="Predstava.CasKonca" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Datum" class="control-label"></label>
-                <input asp-for="Datum" class="form-control" />
-                <span asp-validation-for="Datum" class="text-danger"></span>
+                <label asp-for="Predstava.Datum" class="control-label"></label>
+                <input asp-for="Predstava.Datum" class="form-control" type="date"/>
+                <span asp-validation-for="Predstava.Datum" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

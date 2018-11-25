@@ -30,7 +30,7 @@ namespace Kino {
             services.AddDbContext<KinoDatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("KinoDatabase")));
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
+            //services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
 
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -60,17 +60,17 @@ namespace Kino {
             app.UseCookiePolicy();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            //app.UseSwagger();
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+            //app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
             app.UseSession();
 
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Kolosej}/{action=Index}/{id?}");
             });
         }
     }

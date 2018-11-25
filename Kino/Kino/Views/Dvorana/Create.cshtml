@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label asp-for="Dvorana.IdTehnologije" class="control-label">Ime Tehnologije</label>
                 <span asp-validation-for="Dvorana.IdTehnologije" class="text-danger"></span>
-                <select class="selectpicker">
+                <select asp-for="Dvorana.IdTehnologije" class="selectpicker">
                     @foreach (var tehnologija in Model.TehnologijaList)
                     {
                         <option value="@tehnologija.IdTehnologije">@tehnologija.ImeTehnologije</option>

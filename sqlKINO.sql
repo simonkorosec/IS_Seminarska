@@ -318,8 +318,8 @@ create table Film (
    ID_Omejitve          int              not null,
    ID_Osebje_Filma      int              not null,
    Naslov               TEXT            null,
-   Leto                 datetime             null,
-   Cas_trajanja         datetime             null,
+   Leto                 int             null,
+   Cas_trajanja         int             null,
    constraint PK_FILM primary key nonclustered (ID_Film)
 )
 go
@@ -381,9 +381,9 @@ create table Karta (
    ID_Sedeza            int              not null,
    ID_Film              int              not null,
    ID_Dvorane           int              not null,
-   Cas_Zacetka          datetime             not null,
-   Cas_Konca            datetime             not null,
-   Datum                datetime             not null,
+   Cas_Zacetka          time             not null,
+   Cas_Konca            time             not null,
+   Datum                date             not null,
    Cena                 float                null,
    constraint PK_KARTA primary key (ID_Sedeza, ID_Film, ID_Dvorane, Cas_Zacetka, Cas_Konca, Datum)
 )
@@ -485,9 +485,9 @@ go
 create table Predstava (
    ID_Film              int              not null,
    ID_Dvorane           int              not null,
-   Cas_Zacetka          datetime             not null,
-   Cas_Konca            datetime             not null,
-   Datum                datetime             not null,
+   Cas_Zacetka          time             not null,
+   Cas_Konca            time             not null,
+   Datum                date             not null,
    constraint PK_PREDSTAVA primary key nonclustered (ID_Film, ID_Dvorane, Cas_Zacetka, Cas_Konca, Datum)
 )
 go

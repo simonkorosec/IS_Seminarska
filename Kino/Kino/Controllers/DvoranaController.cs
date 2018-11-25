@@ -29,7 +29,10 @@ namespace Kino.Controllers {
             }
 
             // Pokažemo samo tiste od trenutnega koloseja
-            return View(await _context.Dvorana.Where(s => s.IdKolosej == IdKolosej).ToListAsync());
+            var wrapper = new KolosejWrapper();
+            wrapper.DvoranaList = await _context.Dvorana.Where(s => s.IdKolosej == IdKolosej).ToListAsync();
+            wrapper.TehnologijaList = await _context.Tehnologija.ToListAsync();
+            return View(wrapper);
         }
 
         // GET: Dvorana/Details/5
