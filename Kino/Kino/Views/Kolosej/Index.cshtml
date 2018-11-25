@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Kino.Models.Kolosej>
+﻿@model IEnumerable<Kino.Models.Wraper.KolosejWrapper>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,30 +13,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdNaslov)
+                Naslov
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ime)
+                @Html.DisplayNameFor(model => model.Kolosej.Ime)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdNaslov)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ime)
-            </td>
-            <td>
-                @* Chose - kao tega bo izbrov pa tega ureju, dele sam dvorane pokaže odvisn na to kva izbereš *@
-                <a asp-action="Chose" asp-route-id="@item.IdKolosej">Chose</a> |
-                <a asp-action="Edit" asp-route-id="@item.IdKolosej">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdKolosej">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StringNaslov)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kolosej.Ime)
+                </td>
+                <td>
+                    @* Chose - kao tega bo izbrov pa tega ureju, dele sam dvorane pokaže odvisn na to kva izbereš *@
+                    <a asp-action="Chose" asp-route-id="@item.Kolosej.IdKolosej">Chose</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Kolosej.IdKolosej">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Kolosej.IdKolosej">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Kino.Models;
 using Microsoft.AspNetCore.Http;
+using Kino.Models.Wraper;
 
 namespace Kino.Controllers {
     public class KolosejController : Controller {
@@ -18,7 +19,21 @@ namespace Kino.Controllers {
 
         // GET: Kolosej
         public async Task<IActionResult> Index() {
-            return View(await _context.Kolosej.ToListAsync());
+            IEnumerable<Kolosej> koloseji = await _context.Kolosej.ToListAsync();
+            var wrapperList = new List<KolosejWrapper>();
+
+            foreach (var kolosej in koloseji)
+            {
+                var wrapper = new KolosejWrapper();
+                wrapper.Kolosej = kolosej;
+                wrapper.Naslov = _context.Naslov.FirstOrDefault(s => s.IdNaslov == kolosej.IdNaslov);
+                wrapper.Poste = _context.Poste.FirstOrDefault(s => s.StPoste == wrapper.Naslov.StPoste);
+
+                wrapper.StringNaslov = "" + wrapper.Naslov.Ulica + " " + wrapper.Naslov.HisnaSt + ", " +
+                                       wrapper.Poste.Kraj + " " + wrapper.Poste.StPoste + "";
+                wrapperList.Add(wrapper);
+            }
+            return View(wrapperList);
         }
 
         // GET: Kolosej/Details/5
