@@ -5,17 +5,13 @@
 <script runat="server">
 
 </script>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Dodajanje novega koloseja</title>
 </head>
 <body>
-
 <form id="AddKolosejForm" runat="server">
     <div>
         <input type="text"/>
-        
     </div>
 </form>
 </body>

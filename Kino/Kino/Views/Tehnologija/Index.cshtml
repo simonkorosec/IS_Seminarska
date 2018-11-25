@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<Kino.Models.Tehnologija>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tehnologija";
 }
-
-<h2>Index</h2>
-
+<br />
+<h2>Tehnologija</h2>
+<br />
+<br />
 <p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <a asp-action="Create">Ustvari novo tehnologijo</a>
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -25,9 +26,9 @@
                 @Html.DisplayFor(modelItem => item.ImeTehnologije)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdTehnologije">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdTehnologije">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdTehnologije">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdTehnologije">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.IdTehnologije">Informacije o tehnologiji</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdTehnologije">Izbrisi</a>
             </td>
         </tr>
 }

@@ -1,57 +1,56 @@
 ﻿@model IEnumerable<Kino.Models.Wraper.KolosejWrapper>
 
 @{
-    ViewData["Title"] = "index";
+    ViewData["Title"] = "Predstava";
 }
-
-<h2>index</h2>
-
+<br />
+<h2>Predstava</h2>
+<br />
+<br />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Ustvari novo predstavo</a>
 </p>
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Dvorana.Ime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Film.Naslov)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Predstava.CasZacetka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Predstava.CasZacetka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Predstava.Datum)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dvorana.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film.Naslov)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Predstava.CasZacetka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Predstava.CasKonca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Predstava.Datum)
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dvorana.Ime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Film.Naslov)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Predstava.CasZacetka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Predstava.CasZacetka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Predstava.Datum)
-            </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@item.Predstava">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dvorana.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Film.Naslov)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Predstava.CasZacetka)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Predstava.CasKonca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Predstava.Datum)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
