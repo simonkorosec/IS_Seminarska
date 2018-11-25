@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Kino.Models;
+using Kino.Models.Wraper;
 using Microsoft.AspNetCore.Http;
 using Kino.Models.Wraper;
 
@@ -22,8 +23,8 @@ namespace Kino.Controllers {
             IEnumerable<Kolosej> koloseji = await _context.Kolosej.ToListAsync();
             var wrapperList = new List<KolosejWrapper>();
 
-            foreach (var kolosej in koloseji)
-            {
+            foreach (var kolosej in koloseji) {
+
                 var wrapper = new KolosejWrapper();
                 wrapper.Kolosej = kolosej;
                 wrapper.Naslov = _context.Naslov.FirstOrDefault(s => s.IdNaslov == kolosej.IdNaslov);

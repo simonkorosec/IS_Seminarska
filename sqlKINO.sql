@@ -473,7 +473,7 @@ go
 /* Table: Poste                                                 */
 /*==============================================================*/
 create table Poste (
-   St_Poste             int              identity,
+   St_Poste             int,
    Kraj                 TEXT            not null,
    constraint PK_POSTE primary key nonclustered (St_Poste)
 )
