@@ -55,6 +55,8 @@ namespace Kino.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdOsebjeFilma,Ime,DatumRojstva")] OsebjeFilma osebjeFilma)
         {
+            osebjeFilma.DatumRojstva = osebjeFilma.DatumRojstva.Date;
+
             if (ModelState.IsValid)
             {
                 _context.Add(osebjeFilma);
