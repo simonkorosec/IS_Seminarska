@@ -28,5 +28,7 @@ namespace Kino.Models.Wraper {
         public IEnumerable<StarostnaOmejitev> StarostnaOmejitevList { get; set; }
         public IEnumerable<OsebjeFilma> OsebjeFilmaList { get; set; }
         public IEnumerable<Film> FilmList { get; set; }
+
+        public string StringNaslov { get; set; }
     }
 }
