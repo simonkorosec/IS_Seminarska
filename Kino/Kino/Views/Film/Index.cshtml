@@ -14,16 +14,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Film.Naslov)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ProdukcijskaZalozba.Ime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StarostnaOmejitev.Ime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Film.IdOsebjeFilma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Film.Naslov)
+                @Html.DisplayNameFor(model => model.OsebjeFilma.Ime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Film.Leto)
@@ -38,6 +38,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Film.Naslov)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ProdukcijskaZalozba.Ime)
             </td>
             <td>
@@ -45,9 +48,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OsebjeFilma.Ime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Film.Naslov)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Film.Leto)

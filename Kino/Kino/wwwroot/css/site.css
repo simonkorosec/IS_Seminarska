@@ -28,25 +28,10 @@ body {
     margin: 15px;
 }
 
-body, html {
-
-    background: #f3f2f2;
-}
-
-.navbar {
-   background: #2e5a9c; 
-   text-align: center;
-   height: 10%;
-   padding-top: 10px;
-   margin-bottom: 30px;
-}
-    .navbar .container {
-        width: 45%;
-        margin: auto; 
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
     }
-
-.navbar-collapse ul>li {
-
-    font-size: 18px;
 }
-

@@ -6,36 +6,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Kino.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Kino.Controllers
-{
-    public class OsebjeFilmaController : Controller
-    {
+namespace Kino.Controllers {
+
+    [Authorize]
+    public class OsebjeFilmaController : Controller {
         private readonly KinoDatabaseContext _context;
 
-        public OsebjeFilmaController(KinoDatabaseContext context)
-        {
+        public OsebjeFilmaController(KinoDatabaseContext context) {
             _context = context;
         }
 
         // GET: OsebjeFilma
-        public async Task<IActionResult> Index()
-        {
+        public async Task<IActionResult> Index() {
             return View(await _context.OsebjeFilma.ToListAsync());
         }
 
         // GET: OsebjeFilma/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
+        public async Task<IActionResult> Details(int? id) {
+            if (id == null) {
                 return NotFound();
             }
 
             var osebjeFilma = await _context.OsebjeFilma
                 .FirstOrDefaultAsync(m => m.IdOsebjeFilma == id);
-            if (osebjeFilma == null)
-            {
+            if (osebjeFilma == null) {
                 return NotFound();
             }
 
@@ -43,8 +39,7 @@ namespace Kino.Controllers
         }
 
         // GET: OsebjeFilma/Create
-        public IActionResult Create()
-        {
+        public IActionResult Create() {
             return View();
         }
 
@@ -53,32 +48,30 @@ namespace Kino.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdOsebjeFilma,Ime,DatumRojstva")] OsebjeFilma osebjeFilma)
-        {
+        public async Task<IActionResult> Create([Bind("IdOsebjeFilma,Ime,DatumRojstva")]
+            OsebjeFilma osebjeFilma) {
             osebjeFilma.DatumRojstva = osebjeFilma.DatumRojstva.Date;
 
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 _context.Add(osebjeFilma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(osebjeFilma);
         }
 
         // GET: OsebjeFilma/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
+        public async Task<IActionResult> Edit(int? id) {
+            if (id == null) {
                 return NotFound();
             }
 
             var osebjeFilma = await _context.OsebjeFilma.FindAsync(id);
-            if (osebjeFilma == null)
-            {
+            if (osebjeFilma == null) {
                 return NotFound();
             }
+
             return View(osebjeFilma);
         }
 
@@ -87,48 +80,39 @@ namespace Kino.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdOsebjeFilma,Ime,DatumRojstva")] OsebjeFilma osebjeFilma)
-        {
-            if (id != osebjeFilma.IdOsebjeFilma)
-            {
+        public async Task<IActionResult> Edit(int id, [Bind("IdOsebjeFilma,Ime,DatumRojstva")]
+            OsebjeFilma osebjeFilma) {
+            if (id != osebjeFilma.IdOsebjeFilma) {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
+            if (ModelState.IsValid) {
+                try {
                     _context.Update(osebjeFilma);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!OsebjeFilmaExists(osebjeFilma.IdOsebjeFilma))
-                    {
+                } catch (DbUpdateConcurrencyException) {
+                    if (!OsebjeFilmaExists(osebjeFilma.IdOsebjeFilma)) {
                         return NotFound();
-                    }
-                    else
-                    {
+                    } else {
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(osebjeFilma);
         }
 
         // GET: OsebjeFilma/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
+        public async Task<IActionResult> Delete(int? id) {
+            if (id == null) {
                 return NotFound();
             }
 
             var osebjeFilma = await _context.OsebjeFilma
                 .FirstOrDefaultAsync(m => m.IdOsebjeFilma == id);
-            if (osebjeFilma == null)
-            {
+            if (osebjeFilma == null) {
                 return NotFound();
             }
 
@@ -138,16 +122,14 @@ namespace Kino.Controllers
         // POST: OsebjeFilma/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
+        public async Task<IActionResult> DeleteConfirmed(int id) {
             var osebjeFilma = await _context.OsebjeFilma.FindAsync(id);
             _context.OsebjeFilma.Remove(osebjeFilma);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OsebjeFilmaExists(int id)
-        {
+        private bool OsebjeFilmaExists(int id) {
             return _context.OsebjeFilma.Any(e => e.IdOsebjeFilma == id);
         }
     }

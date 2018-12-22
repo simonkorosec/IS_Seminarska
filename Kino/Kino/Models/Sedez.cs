@@ -7,7 +7,7 @@ namespace Kino.Models
     {
         public int IdSedeza { get; set; }
         public int IdDvorane { get; set; }
-        public int? Vrsta { get; set; }
-        public int? Stevilka { get; set; }
+        public int Vrsta { get; set; }
+        public int Stevilka { get; set; }
     }
 }

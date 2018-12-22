@@ -8,5 +8,6 @@ namespace Kino.Models
         public int IdKolosej { get; set; }
         public int IdNaslov { get; set; }
         public string Ime { get; set; }
+        public string OwnerId { get; set; }
     }
 }

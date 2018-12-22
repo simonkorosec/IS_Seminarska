@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Kino.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kino.Controllers
 {
+    [Authorize]
     public class TehnologijaController : Controller
     {
         private readonly KinoDatabaseContext _context;

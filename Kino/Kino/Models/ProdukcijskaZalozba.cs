@@ -7,8 +7,8 @@ namespace Kino.Models
     public partial class ProdukcijskaZalozba
     {
         public int IdZalozba { get; set; }
-        
-        [DisplayName("Produkcijska Zalozba")]
+
+        [DisplayName("Produkcijska Založba")]
         public string Ime { get; set; }
     }
 }

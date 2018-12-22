@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Kino.Models;
 using Kino.Models.Wraper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
 namespace Kino.Controllers {
+
+    [Authorize]
     public class DvoranaController : Controller {
         private readonly KinoDatabaseContext _context;
 
@@ -92,9 +95,10 @@ namespace Kino.Controllers {
                 for (var j = 0; j < dvoranaStSedezovNaVrsto; j++) {
                     var sedez = new Sedez() {IdDvorane = IdDvorane, Vrsta = (i + 1), Stevilka = (j + 1)};
                     _context.Add(sedez);
-                    _context.SaveChanges();
+                    
                 }
             }
+            _context.SaveChanges();
         }
 
         // GET: Dvorana/Edit/5

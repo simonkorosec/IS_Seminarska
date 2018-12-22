@@ -13,7 +13,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Film.IdZalozba" class="control-label"></label>
+                <label asp-for="Film.IdZalozba" class="control-label">Produkcija Založba</label>
                 <select asp-for="Film.IdZalozba" class="selectpicker">
                     @foreach (var zalozba in Model.ZalozbaList)
                     {
@@ -23,7 +23,7 @@
                 <span asp-validation-for="Film.IdZalozba" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Film.IdOmejitve" class="control-label"></label>
+                <label asp-for="Film.IdOmejitve" class="control-label">Starostna Omejitev</label>
                 <select asp-for="Film.IdOmejitve" class="selectpicker">
                     @foreach (var omejitev in Model.StarostnaOmejitevList)
                     {
@@ -33,7 +33,7 @@
                 <span asp-validation-for="Film.IdOmejitve" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Film.IdOsebjeFilma" class="control-label"></label>
+                <label asp-for="Film.IdOsebjeFilma" class="control-label">Režiser</label>
                 <select asp-for="Film.IdOsebjeFilma" class="selectpicker">
                     @foreach (var oseba in Model.OsebjeFilmaList)
                     {

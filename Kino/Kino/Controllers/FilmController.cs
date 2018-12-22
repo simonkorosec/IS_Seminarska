@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Kino.Models;
 using Kino.Models.Wraper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kino.Controllers {
+    
+    [Authorize]
     public class FilmController : Controller {
         private readonly KinoDatabaseContext _context;
 

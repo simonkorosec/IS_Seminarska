@@ -9,7 +9,7 @@ namespace Kino.Models
         public int IdKolosej { get; set; }
         public int IdTehnologije { get; set; }
         public string Ime { get; set; }
-        public int? StVrst { get; set; }
-        public int? StSedezovNaVrsto { get; set; }
+        public int StVrst { get; set; }
+        public int StSedezovNaVrsto { get; set; }
     }
 }
