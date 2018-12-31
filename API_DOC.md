@@ -1,3 +1,6 @@
+##### Base URL
+`https://kino20181203121922.azurewebsites.net/`
+
 ## Vse predstave
 - `api/PredstavaAPI`
 - GET
