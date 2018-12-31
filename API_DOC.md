@@ -49,3 +49,24 @@
   }
 ]
 ```
+---
+## Nakup karte za predstavo
+- `api/NakupApi`
+- POST
+
+#### Input
+```JSON
+{
+  "idFilm": 1,
+  "idDvorane": 1,
+  "idSedeza": 3,
+  "casZacetka": "09:00:00",
+  "casKonca": "11:00:00",
+  "datum": "2018-12-25",
+  "cena": 6.4
+}
+```
+
+#### Return
+- HTTP.200 if Ok
+- HTTP.400 if bad request
