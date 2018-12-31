@@ -10,7 +10,9 @@ using Kino.Models;
 
 namespace Kino.Controllers.API {
     public class PredstavaPodatki {
+        public int IdFilm { get; set; }
         public string NaslovFilma { get; set; }
+        public int IdDvorane { get; set; }
         public string ImeDvorane { get; set; }
         public string ImeKoloseja { get; set; }
         public string CasZacetka { get; set; }
@@ -35,7 +37,9 @@ namespace Kino.Controllers.API {
             return (from predstava in predstave
                 let d = _context.Dvorana.FirstOrDefault(x => x.IdDvorane == predstava.IdDvorane)
                 select new PredstavaPodatki {
+                    IdFilm =  predstava.IdFilm,
                     NaslovFilma = _context.Film.FirstOrDefault(x => x.IdFilm == predstava.IdFilm)?.Naslov,
+                    IdDvorane = d.IdDvorane,
                     ImeDvorane = d?.Ime.Trim(),
                     ImeKoloseja = _context.Kolosej.FirstOrDefault(x => x.IdKolosej == d.IdKolosej)?.Ime,
                     CasZacetka = predstava.CasZacetka.ToString(),

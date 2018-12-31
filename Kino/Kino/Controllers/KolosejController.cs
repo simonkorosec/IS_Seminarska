@@ -76,9 +76,9 @@ namespace Kino.Controllers {
             var currentUser = await _userManager.GetUserAsync(User);
 
             if (ModelState.IsValid) {
-                Poste posta = kolosejWrapper.Poste;
-                Naslov naslov = kolosejWrapper.Naslov;
-                Kolosej kolosej = kolosejWrapper.Kolosej;
+                var posta = kolosejWrapper.Poste;
+                var naslov = kolosejWrapper.Naslov;
+                var kolosej = kolosejWrapper.Kolosej;
                 naslov.StPoste = posta.StPoste;
 
                 if (_context.Poste.Find(posta.StPoste) == null) {
