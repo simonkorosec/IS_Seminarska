@@ -1,5 +1,7 @@
 ## Vse predstave
 - `api/PredstavaAPI`
+- GET
+
 ##### Retrun
 ```JSON
 [
@@ -12,6 +14,38 @@
     "casZacetka": "09:00:00",
     "casKonca": "11:00:00",
     "datum": "2018-12-25"
+  }
+]
+```
+---
+## Vsi sedeži ki so še na voljo za predstavo
+- `api/SedezApi`
+- POST
+
+#### Input
+```JSON
+{
+	"idFilm": 1,
+	"idDvorane": 1,
+	"casZacetka": "09:00:00",
+	"casKonca": "11:00:00",
+	"datum": "2018-12-25"
+}
+```
+##### Retrun
+```JSON
+[
+  {
+    "idSedeza": 2,
+    "idDvorane": 1,
+    "vrsta": 1,
+    "stevilka": 2
+  },
+  {
+    "idSedeza": 3,
+    "idDvorane": 1,
+    "vrsta": 1,
+    "stevilka": 3
   }
 ]
 ```
