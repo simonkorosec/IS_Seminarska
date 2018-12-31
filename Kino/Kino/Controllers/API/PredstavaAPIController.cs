@@ -40,7 +40,7 @@ namespace Kino.Controllers.API {
                     ImeKoloseja = _context.Kolosej.FirstOrDefault(x => x.IdKolosej == d.IdKolosej)?.Ime,
                     CasZacetka = predstava.CasZacetka.ToString(),
                     CasKonca = predstava.CasKonca.ToString(),
-                    Datum = predstava.Datum.ToString(CultureInfo.CurrentCulture)
+                    Datum = predstava.Datum.ToString(CultureInfo.GetCultureInfo("si-SI")).Split(" ")[0]
                 }).ToList();
         }
 
