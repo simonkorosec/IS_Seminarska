@@ -4,7 +4,9 @@
 ```JSON
 [
   {
+    "idFilma": 1,
     "naslovFilma": "Iron Man",
+    "idDvorane": 1,
     "imeDvorane": "Dvorana 1A",
     "imeKoloseja": "Kolosej Ljubljana",
     "casZacetka": "09:00:00",
