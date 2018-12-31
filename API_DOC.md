@@ -66,7 +66,6 @@
   "cena": 6.4
 }
 ```
-
 #### Return
 - HTTP.200 if Ok
 - HTTP.400 if bad request
