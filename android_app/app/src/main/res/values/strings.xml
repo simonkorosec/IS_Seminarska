@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Kino IS Seminarska</string>
-    <string name="title_predstave">Predstave</string>
-    <string name="title_ticket">Vstopnica</string>
-    <string name="title_notifications">Notifications</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_predstave">Narocilo vstopnice</string>
+    <string name="title_ticket">Pretekla narocila</string>
 
     <string name="base_url">https://kino20181203121922.azurewebsites.net/</string>
 </resources>
