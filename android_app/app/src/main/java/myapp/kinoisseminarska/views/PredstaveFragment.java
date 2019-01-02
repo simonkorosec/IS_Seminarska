@@ -41,9 +41,6 @@ public class PredstaveFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        
-
     }
 
     @Override
@@ -57,24 +54,8 @@ public class PredstaveFragment extends Fragment {
         myProgressBar.setVisibility(View.VISIBLE);
         linearLayoutManager = new LinearLayoutManager(getActivity());
 
-        RestManagment.getPredstave().enqueue(new Callback<List<Show>>() {
-            @Override
-            public void onResponse(Call<List<Show>> call, Response<List<Show>> response) {
-                if(response.code() == 200) {
-                    myProgressBar.setVisibility(View.GONE);
-                    Log.d("test_is", "Current shows loaded");
-                    shows = response.body();
-
-                    showsRecyclerAdapter = new ShowsRecyclerAdapter(shows);
-                    showRecyclerView.setLayoutManager(linearLayoutManager);
-                    showRecyclerView.setAdapter(showsRecyclerAdapter);
-                }
-            }
-            @Override
-            public void onFailure(Call<List<Show>> call, Throwable t) {
-                Log.d("test_is", "api '/PredstavaAPI' failed");
-            }
-        });
+        // first time api call to server
+        startAPICall();
         return rootContainer;
     }
 
@@ -103,5 +84,27 @@ public class PredstaveFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void startAPICall() {
+        RestManagment.getPredstave().enqueue(new Callback<List<Show>>() {
+            @Override
+            public void onResponse(Call<List<Show>> call, Response<List<Show>> response) {
+                if (response.code() == 200) {
+                    myProgressBar.setVisibility(View.GONE);
+                    Log.d("test_is", "Current shows loaded");
+                    shows = response.body();
+                    showsRecyclerAdapter = new ShowsRecyclerAdapter(shows);
+                    showRecyclerView.setLayoutManager(linearLayoutManager);
+                    showRecyclerView.setAdapter(showsRecyclerAdapter);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Show>> call, Throwable t) {
+                Log.d("test_is", "api '/PredstavaAPI' failed");
+                // if api fails to load, try again with another call
+                startAPICall();
+            }
+        });
     }
 }

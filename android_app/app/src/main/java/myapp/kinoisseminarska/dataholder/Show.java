@@ -2,7 +2,9 @@ package myapp.kinoisseminarska.dataholder;
 
 import com.squareup.moshi.Json;
 
-public class Show {
+import java.io.Serializable;
+
+public class Show implements Serializable {
 
     @Json(name = "idFilma")
     private int idFilma;

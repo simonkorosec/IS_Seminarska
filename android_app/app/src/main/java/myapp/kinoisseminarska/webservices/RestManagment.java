@@ -3,8 +3,10 @@ package myapp.kinoisseminarska.webservices;
 import java.util.List;
 
 import myapp.kinoisseminarska.dataholder.Seat;
+import myapp.kinoisseminarska.dataholder.SeatQuery;
 import myapp.kinoisseminarska.dataholder.Show;
 import myapp.kinoisseminarska.dataholder.TicketData;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
@@ -25,15 +27,14 @@ public class RestManagment {
                 .getPredstave();
     }
 
-    public static Call<List<Seat>> getAvailableSeats(int idFilm, int idDvorane, String casZacetka,
-                                                     String casKonca, String datum) {
+    public static Call<List<Seat>> getAvailableSeats(SeatQuery mySeatQuery) {
         return myRetrofit
                 .create(GetAvailableSeats.class)
-                .getAvailableSeats(idFilm, idDvorane, casZacetka, casKonca, datum);
+                .getAvailableSeats(mySeatQuery);
     }
 
 
-    public static Call<String> makeTicketOrder(TicketData myTicket) {
+    public static Call<ResponseBody> makeTicketOrder(TicketData myTicket) {
         return myRetrofit
                 .create(MakeTicketOrder.class)
                 .makeTicketOrder(myTicket);

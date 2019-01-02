@@ -3,19 +3,14 @@ package myapp.kinoisseminarska.webservices;
 import java.util.List;
 
 import myapp.kinoisseminarska.dataholder.Seat;
+import myapp.kinoisseminarska.dataholder.SeatQuery;
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface GetAvailableSeats {
 
-    //get list of all available seats for
+    //get list of all available seats for passed SeatQuery info
     @POST("SedezAPI/")
-    @FormUrlEncoded
-    Call<List<Seat>> getAvailableSeats(@Field("idFilm") int idFilm,
-                                       @Field("idDvorane") int idDvorane,
-                                       @Field("casZacetka") String casZacetka,
-                                       @Field("casKonca") String casKonca,
-                                       @Field("datum") String datum);
+    Call<List<Seat>> getAvailableSeats(@Body SeatQuery mySeatQuery);
 }

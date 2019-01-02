@@ -1,6 +1,7 @@
 package myapp.kinoisseminarska.utils.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,17 +14,18 @@ import java.util.List;
 
 import myapp.kinoisseminarska.R;
 import myapp.kinoisseminarska.dataholder.Show;
+import myapp.kinoisseminarska.views.ChooseSeatActivity;
 
 
 public class ShowsRecyclerAdapter
-        extends RecyclerView.Adapter<ShowsRecyclerAdapter.DiscoveryRecyclerHolder> {
+        extends RecyclerView.Adapter<ShowsRecyclerAdapter.ShowsRecyclerHolder> {
 
     private List<Show> shows;
     @NonNull
     private Show currentShow;
 
     // Define the View Holder
-    static class DiscoveryRecyclerHolder extends RecyclerView.ViewHolder {
+    static class ShowsRecyclerHolder extends RecyclerView.ViewHolder {
         LinearLayout cardContainer;
         TextView imeFilmaText;
         TextView imeDvoraneText;
@@ -31,7 +33,7 @@ public class ShowsRecyclerAdapter
         TextView casKoncaText;
         TextView datumText;
 
-        DiscoveryRecyclerHolder(final View itemView) {
+        ShowsRecyclerHolder(final View itemView) {
             super(itemView);
             // Initialize the parameters based on the Card layout names
             cardContainer = itemView.findViewById(R.id.cardShowContainer);
@@ -54,20 +56,18 @@ public class ShowsRecyclerAdapter
 
     @NonNull
     @Override
-    public DiscoveryRecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Find and inflate the appropriate card layout.
-        // In this case layout/card_discovery.xml
+    public ShowsRecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View cardShowView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_show, parent, false);
 
-        return new DiscoveryRecyclerHolder(cardShowView);
+        return new ShowsRecyclerHolder(cardShowView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final DiscoveryRecyclerHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ShowsRecyclerHolder holder, int position) {
         // Get the restaurant home info for the appropriate restaurant
         Show showInfo = this.shows.get(position);
-        Context myContext = holder.imeDvoraneText.getContext();
+        final Context myContext = holder.imeDvoraneText.getContext();
 
         holder.imeFilmaText.setText(showInfo.getNaslovFilma());
         holder.imeDvoraneText.setText(showInfo.getImeDvorane());
@@ -80,7 +80,9 @@ public class ShowsRecyclerAdapter
             @Override
             public void onClick(View view) {
                 currentShow = shows.get(holder.getAdapterPosition());
-
+                Intent myIntent = new Intent(myContext, ChooseSeatActivity.class);
+                myIntent.putExtra("show_info", currentShow);
+                myContext.startActivity(myIntent);
             }
         });
     }
