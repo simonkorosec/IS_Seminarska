@@ -1,8 +1,10 @@
 package myapp.kinoisseminarska.dataholder;
 
+import android.support.annotation.NonNull;
 import com.squareup.moshi.Json;
+import java.io.Serializable;
 
-public class Seat {
+public class Seat implements Comparable, Serializable {
 
     @Json(name = "idSedeza")
     private int idSedeza;
@@ -45,4 +47,12 @@ public class Seat {
         this.stevilka = stevilka;
     }
 
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int sortByVrsta = Integer.compare(this.getVrsta(), ((Seat)o).getVrsta());
+        if(sortByVrsta != 0)
+            return sortByVrsta;
+        return Integer.compare(this.getStevilka(), ((Seat)o).getStevilka());
+    }
 }

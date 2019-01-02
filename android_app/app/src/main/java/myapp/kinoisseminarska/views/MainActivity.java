@@ -12,8 +12,7 @@ import myapp.kinoisseminarska.R;
 
 public class MainActivity extends AppCompatActivity implements
         PredstaveFragment.OnFragmentInteractionListener,
-        PastOrders.OnFragmentInteractionListener,
-        SeatsFragment.OnFragmentInteractionListener {
+        PastOrders.OnFragmentInteractionListener {
 
     private PredstaveFragment predstaveFragment = new PredstaveFragment();
     private PastOrders pastOrders = new PastOrders();
