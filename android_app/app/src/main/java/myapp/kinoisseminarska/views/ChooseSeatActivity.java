@@ -62,13 +62,11 @@ public class ChooseSeatActivity extends AppCompatActivity {
                     if (response.code() == 200) {
                         mySeats = response.body();
                         Log.d("test_is", "Current num of seats for show: " + mySeats.size());
-                        for (Seat mySeat: mySeats)
-                            mySeat.setImeDvorane(passedShow.getImeDvorane());
                         numOfSeatsText.setText(String.valueOf(mySeats.size()));
                         Collections.sort(mySeats);
                         seatProgessBar.setVisibility(View.GONE);
 
-                        seatsAdapter = new SeatsRecyclerAdapter(mySeats);
+                        seatsAdapter = new SeatsRecyclerAdapter(mySeats, passedShow);
                         seatRecyclerView.setLayoutManager(linearLayoutManager);
                         seatRecyclerView.setAdapter(seatsAdapter);
                     }

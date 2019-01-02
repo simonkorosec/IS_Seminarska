@@ -1,10 +1,10 @@
 package myapp.kinoisseminarska.dataholder;
 
 import android.support.annotation.NonNull;
-
 import com.squareup.moshi.Json;
+import java.io.Serializable;
 
-public class Seat implements Comparable {
+public class Seat implements Comparable, Serializable {
 
     @Json(name = "idSedeza")
     private int idSedeza;
@@ -14,8 +14,6 @@ public class Seat implements Comparable {
     private int vrsta;
     @Json(name = "stevilka")
     private int stevilka;
-    // added optional parameter
-    private String imeDvorane;
 
     public int getIdSedeza() {
         return idSedeza;
@@ -49,13 +47,6 @@ public class Seat implements Comparable {
         this.stevilka = stevilka;
     }
 
-    public void setImeDvorane(String imeDvorane) {
-        this.imeDvorane = imeDvorane;
-    }
-
-    public String getImeDvorane() {
-        return imeDvorane;
-    }
 
     @Override
     public int compareTo(@NonNull Object o) {
