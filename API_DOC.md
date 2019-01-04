@@ -103,3 +103,23 @@
 #### Return
 - HTTP.200 if Ok, password and user are correct
 - HTTP.400 if wrong password
+---
+## Karte od uporabnika
+- `api/UporabnikApi/{user-id}`
+- GET
+
+#### Return
+```JSON
+[
+  {
+    "idSedeza": 1,
+    "idFilm": 1,
+    "idDvorane": 1,
+    "casZacetka": "11:10:00",
+    "casKonca": "13:10:00",
+    "datum": "2019-01-04",
+    "cena": 5.6,
+    "username": "user-id"
+  }
+]
+```
