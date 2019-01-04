@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +10,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kino.Controllers.API {
+    public class KartaPodatki {
+        public int IdSedeza { get; set; }
+        public int IdFilm { get; set; }
+        public int IdDvorane { get; set; }
+        public string CasZacetka { get; set; }
+        public string CasKonca { get; set; }
+        public string Datum { get; set; }
+        public string Cena { get; set; }
+    }
+
     [Route("api/[controller]")]
     [ApiController]
     public class UporabnikApi : ControllerBase {
@@ -16,6 +28,28 @@ namespace Kino.Controllers.API {
         public UporabnikApi(KinoDatabaseContext context) {
             _context = context;
         }
+
+        // GET: api/UporabnikApi/5
+        [HttpGet("{id}")]
+        public LinkedList<KartaPodatki> GetKarte([FromRoute] string id) {
+            var returnKarte = new LinkedList<KartaPodatki>();
+            var karte = _context.Karta.Where(e => e.Username == id).ToList();
+
+            foreach (var karta in karte) {
+                returnKarte.AddFirst(new KartaPodatki() {
+                    IdSedeza = karta.IdSedeza,
+                    IdDvorane = karta.IdDvorane,
+                    IdFilm = karta.IdFilm,
+                    CasZacetka = karta.CasZacetka.ToString(),
+                    CasKonca = karta.CasKonca.ToString(),
+                    Datum = karta.Datum.ToString(CultureInfo.GetCultureInfo("si-SI")).Split(" ")[0],
+                    Cena = karta.Cena.ToString(CultureInfo.GetCultureInfo("en-GB"))
+                });
+            }
+
+            return returnKarte;
+        }
+
 
         // PUT: api/UporabnikApi/5
         [HttpPut("{id}")]
