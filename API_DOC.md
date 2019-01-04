@@ -66,9 +66,40 @@
   "casZacetka": "09:00:00",
   "casKonca": "11:00:00",
   "datum": "2018-12-25",
-  "cena": 6.4
+  "cena": 6.4,
+  "username": "user"
 }
 ```
 #### Return
 - HTTP.200 if Ok
 - HTTP.400 if bad request
+---
+## Nov Uporabnik
+- `api/UporabnikApi/register`
+- POST
+
+#### Input
+```JSON
+{
+  "username": "string",
+  "password": "string"
+}
+```
+#### Return
+- HTTP.200 if Ok, new user created
+- HTTP.409 if username taken
+---
+## Login za uporabnika
+- `api/UporabnikApi/login`
+- POST
+
+#### Input
+```JSON
+{
+  "username": "string",
+  "password": "string"
+}
+```
+#### Return
+- HTTP.200 if Ok, password and user are correct
+- HTTP.400 if wrong password
