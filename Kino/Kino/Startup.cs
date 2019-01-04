@@ -44,6 +44,8 @@ namespace Kino {
                 .AddEntityFrameworkStores<KinoDatabaseContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,11 +56,15 @@ namespace Kino {
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseSwagger();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseSession();
+
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
+
 
             app.UseMvc(routes => {
                 routes.MapRoute(

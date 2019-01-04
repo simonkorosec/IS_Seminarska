@@ -9,7 +9,6 @@ using Kino.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Kino.Controllers {
-
     [Authorize]
     public class OsebjeFilmaController : Controller {
         private readonly KinoDatabaseContext _context;
@@ -50,8 +49,6 @@ namespace Kino.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdOsebjeFilma,Ime,DatumRojstva")]
             OsebjeFilma osebjeFilma) {
-            osebjeFilma.DatumRojstva = osebjeFilma.DatumRojstva.Date;
-
             if (ModelState.IsValid) {
                 _context.Add(osebjeFilma);
                 await _context.SaveChangesAsync();

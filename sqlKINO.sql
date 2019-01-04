@@ -1,19 +1,19 @@
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Dvorana')
-            and   name  = 'Uporablja_FK'
+            and   name  = 'uporablja_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Dvorana.Uporablja_FK
+   drop index Dvorana.uporablja_fk
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Dvorana')
-            and   name  = 'Ima_FK'
+            and   name  = 'ima_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Dvorana.Ima_FK
+   drop index Dvorana.ima_fk
 go
 
 if exists (select 1
@@ -26,28 +26,28 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Film')
-            and   name  = 'Reziseral_FK'
+            and   name  = 'reziseral_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Film.Reziseral_FK
+   drop index Film.reziseral_fk
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Film')
-            and   name  = 'Produciral_FK'
+            and   name  = 'produciral_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Film.Produciral_FK
+   drop index Film.produciral_fk
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Film')
-            and   name  = 'Omejitev_FK'
+            and   name  = 'omejitev_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Film.Omejitev_FK
+   drop index Film.omejitev_fk
 go
 
 if exists (select 1
@@ -59,45 +59,29 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('Igra_v')
-            and   name  = 'Igra_v2_FK'
+           where  id    = object_id('Karta')
+            and   name  = 'kupil_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Igra_v.Igra_v2_FK
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('Igra_v')
-            and   name  = 'Igra_v_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index Igra_v.Igra_v_FK
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Igra_v')
-            and   type = 'U')
-   drop table Igra_v
+   drop index Karta.kupil_fk
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Karta')
-            and   name  = 'Velja_za_predstavo_FK'
+            and   name  = 'velja_za_predstavo_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Karta.Velja_za_predstavo_FK
+   drop index Karta.velja_za_predstavo_fk
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Karta')
-            and   name  = 'Velja za_FK'
+            and   name  = 'velja_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Karta."Velja za_FK"
+   drop index Karta.velja_fk
 go
 
 if exists (select 1
@@ -110,10 +94,10 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Kolosej')
-            and   name  = 'Nahaja se na_FK'
+            and   name  = 'nahaja_na_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Kolosej."Nahaja se na_FK"
+   drop index Kolosej.nahaja_na_fk
 go
 
 if exists (select 1
@@ -126,10 +110,10 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Naslov')
-            and   name  = 'Nahaja v_FK'
+            and   name  = 'nahaja_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Naslov."Nahaja v_FK"
+   drop index Naslov.nahaja_fk
 go
 
 if exists (select 1
@@ -141,16 +125,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('"Osebje Filma"')
+           where  id = object_id('Osebje_Filma')
             and   type = 'U')
-   drop table "Osebje Filma"
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Pozicija')
-            and   type = 'U')
-   drop table Pozicija
+   drop table Osebje_Filma
 go
 
 if exists (select 1
@@ -163,19 +140,19 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Predstava')
-            and   name  = 'Nahaja_v_FK'
+            and   name  = 'nahaja_v_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Predstava.Nahaja_v_FK
+   drop index Predstava.nahaja_v_fk
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Predstava')
-            and   name  = 'Predvaja_FK'
+            and   name  = 'predvaja_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Predstava.Predvaja_FK
+   drop index Predstava.predvaja_fk
 go
 
 if exists (select 1
@@ -186,44 +163,19 @@ if exists (select 1
 go
 
 if exists (select 1
-            from  sysindexes
-           where  id    = object_id('Pripada')
-            and   name  = 'Pripada2_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index Pripada.Pripada2_FK
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('Pripada')
-            and   name  = 'Pripada_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index Pripada.Pripada_FK
-go
-
-if exists (select 1
             from  sysobjects
-           where  id = object_id('Pripada')
+           where  id = object_id('Produkcijska_Zalozba')
             and   type = 'U')
-   drop table Pripada
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('"Produkcijska Zalozba"')
-            and   type = 'U')
-   drop table "Produkcijska Zalozba"
+   drop table Produkcijska_Zalozba
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('Sedez')
-            and   name  = 'Se nahaja v_FK'
+            and   name  = 'v_dvorani_fk'
             and   indid > 0
             and   indid < 255)
-   drop index Sedez."Se nahaja v_FK"
+   drop index Sedez.v_dvorani_fk
 go
 
 if exists (select 1
@@ -235,9 +187,9 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('"Starostna Omejitev"')
+           where  id = object_id('Starostna_Omejitev')
             and   type = 'U')
-   drop table "Starostna Omejitev"
+   drop table Starostna_Omejitev
 go
 
 if exists (select 1
@@ -248,35 +200,10 @@ if exists (select 1
 go
 
 if exists (select 1
-            from  sysindexes
-           where  id    = object_id('Zaposleni')
-            and   name  = 'Stanuje na_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index Zaposleni."Stanuje na_FK"
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('Zaposleni')
-            and   name  = 'Zaposlen na_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index Zaposleni."Zaposlen na_FK"
-go
-
-if exists (select 1
             from  sysobjects
-           where  id = object_id('Zaposleni')
+           where  id = object_id('Uporabnik')
             and   type = 'U')
-   drop table Zaposleni
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('Zvrst')
-            and   type = 'U')
-   drop table Zvrst
+   drop table Uporabnik
 go
 
 /*==============================================================*/
@@ -286,25 +213,25 @@ create table Dvorana (
    ID_Dvorane           int              identity,
    ID_Kolosej           int              not null,
    ID_Tehnologije       int              not null,
-   Ime                  TEXT            null,
-   St_Vrst              int              null,
-   st_sedezov_na_vrsto  int              null,
+   Ime                  varchar(256)         not null,
+   St_Vrst              int                  not null,
+   st_sedezov_na_vrsto  int                  not null,
    constraint PK_DVORANA primary key nonclustered (ID_Dvorane)
 )
 go
 
 /*==============================================================*/
-/* Index: Ima_FK                                                */
+/* Index: ima_fk                                                */
 /*==============================================================*/
-create index Ima_FK on Dvorana (
+create index ima_fk on Dvorana (
 ID_Kolosej ASC
 )
 go
 
 /*==============================================================*/
-/* Index: Uporablja_FK                                          */
+/* Index: uporablja_fk                                          */
 /*==============================================================*/
-create index Uporablja_FK on Dvorana (
+create index uporablja_fk on Dvorana (
 ID_Tehnologije ASC
 )
 go
@@ -317,59 +244,33 @@ create table Film (
    ID_Zalozba           int              not null,
    ID_Omejitve          int              not null,
    ID_Osebje_Filma      int              not null,
-   Naslov               TEXT            null,
-   Leto                 int             null,
-   Cas_trajanja         int             null,
+   Naslov               varchar(256)         not null,
+   Leto                 int                  not null,
+   Cas_trajanja         int                  not null,
    constraint PK_FILM primary key nonclustered (ID_Film)
 )
 go
 
 /*==============================================================*/
-/* Index: Omejitev_FK                                           */
+/* Index: omejitev_fk                                           */
 /*==============================================================*/
-create index Omejitev_FK on Film (
+create index omejitev_fk on Film (
 ID_Omejitve ASC
 )
 go
 
 /*==============================================================*/
-/* Index: Produciral_FK                                         */
+/* Index: produciral_fk                                         */
 /*==============================================================*/
-create index Produciral_FK on Film (
+create index produciral_fk on Film (
 ID_Zalozba ASC
 )
 go
 
 /*==============================================================*/
-/* Index: Reziseral_FK                                          */
+/* Index: reziseral_fk                                          */
 /*==============================================================*/
-create index Reziseral_FK on Film (
-ID_Osebje_Filma ASC
-)
-go
-
-/*==============================================================*/
-/* Table: Igra_v                                                */
-/*==============================================================*/
-create table Igra_v (
-   ID_Film              int              not null,
-   ID_Osebje_Filma      int              not null,
-   constraint PK_IGRA_V primary key (ID_Film, ID_Osebje_Filma)
-)
-go
-
-/*==============================================================*/
-/* Index: Igra_v_FK                                             */
-/*==============================================================*/
-create index Igra_v_FK on Igra_v (
-ID_Film ASC
-)
-go
-
-/*==============================================================*/
-/* Index: Igra_v2_FK                                            */
-/*==============================================================*/
-create index Igra_v2_FK on Igra_v (
+create index reziseral_fk on Film (
 ID_Osebje_Filma ASC
 )
 go
@@ -381,26 +282,27 @@ create table Karta (
    ID_Sedeza            int              not null,
    ID_Film              int              not null,
    ID_Dvorane           int              not null,
-   Cas_Zacetka          time             not null,
-   Cas_Konca            time             not null,
-   Datum                date             not null,
-   Cena                 float                null,
+   Cas_Zacetka          TIME(7)             not null,
+   Cas_Konca            TIME(7)             not null,
+   Datum                datetime             not null,
+   username             varchar(256)         not null,
+   Cena                 float                not null,
    constraint PK_KARTA primary key (ID_Sedeza, ID_Film, ID_Dvorane, Cas_Zacetka, Cas_Konca, Datum)
 )
 go
 
 /*==============================================================*/
-/* Index: "Velja za_FK"                                         */
+/* Index: velja_fk                                              */
 /*==============================================================*/
-create index "Velja za_FK" on Karta (
+create index velja_fk on Karta (
 ID_Sedeza ASC
 )
 go
 
 /*==============================================================*/
-/* Index: Velja_za_predstavo_FK                                 */
+/* Index: velja_za_predstavo_fk                                 */
 /*==============================================================*/
-create index Velja_za_predstavo_FK on Karta (
+create index velja_za_predstavo_fk on Karta (
 ID_Film ASC,
 ID_Dvorane ASC,
 Cas_Zacetka ASC,
@@ -410,20 +312,29 @@ Datum ASC
 go
 
 /*==============================================================*/
+/* Index: kupil_fk                                              */
+/*==============================================================*/
+create index kupil_fk on Karta (
+username ASC
+)
+go
+
+/*==============================================================*/
 /* Table: Kolosej                                               */
 /*==============================================================*/
 create table Kolosej (
    ID_Kolosej           int              identity,
    ID_Naslov            int              not null,
-   Ime                  TEXT            not null,
+   Ime                  varchar(256)         not null,
+   OwnerId              varchar(256)         null,
    constraint PK_KOLOSEJ primary key nonclustered (ID_Kolosej)
 )
 go
 
 /*==============================================================*/
-/* Index: "Nahaja se na_FK"                                     */
+/* Index: nahaja_na_fk                                          */
 /*==============================================================*/
-create index "Nahaja se na_FK" on Kolosej (
+create index nahaja_na_fk on Kolosej (
 ID_Naslov ASC
 )
 go
@@ -433,39 +344,28 @@ go
 /*==============================================================*/
 create table Naslov (
    ID_Naslov            int              identity,
-   St_Poste             int              not null,
-   Ulica                TEXT            not null,
-   "Hisna St."          int              not null,
+   St_Poste             int                  not null,
+   Ulica                varchar(256)         not null,
+   Hisna_St             int                  not null,
    constraint PK_NASLOV primary key nonclustered (ID_Naslov)
 )
 go
 
 /*==============================================================*/
-/* Index: "Nahaja v_FK"                                         */
+/* Index: nahaja_fk                                             */
 /*==============================================================*/
-create index "Nahaja v_FK" on Naslov (
+create index nahaja_fk on Naslov (
 St_Poste ASC
 )
 go
 
 /*==============================================================*/
-/* Table: "Osebje Filma"                                        */
+/* Table: Osebje_Filma                                          */
 /*==============================================================*/
-create table "Osebje Filma" (
+create table Osebje_Filma (
    ID_Osebje_Filma      int              identity,
-   Ime                  TEXT            null,
-   "Datum Rojstva"      datetime             null,
-   constraint "PK_OSEBJE FILMA" primary key nonclustered (ID_Osebje_Filma)
-)
-go
-
-/*==============================================================*/
-/* Table: Pozicija                                              */
-/*==============================================================*/
-create table Pozicija (
-   ID_Pozicije          int              identity,
-   Ime_Pozicije         TEXT            null,
-   constraint PK_POZICIJA primary key nonclustered (ID_Pozicije)
+   Ime                  varchar(256)         not null,
+   constraint PK_OSEBJE_FILMA primary key nonclustered (ID_Osebje_Filma)
 )
 go
 
@@ -473,8 +373,8 @@ go
 /* Table: Poste                                                 */
 /*==============================================================*/
 create table Poste (
-   St_Poste             int,
-   Kraj                 TEXT            not null,
+   St_Poste             int                  not null,
+   Kraj                 varchar(256)         not null,
    constraint PK_POSTE primary key nonclustered (St_Poste)
 )
 go
@@ -485,62 +385,36 @@ go
 create table Predstava (
    ID_Film              int              not null,
    ID_Dvorane           int              not null,
-   Cas_Zacetka          time             not null,
-   Cas_Konca            time             not null,
-   Datum                date             not null,
+   Cas_Zacetka          TIME(7)             not null,
+   Cas_Konca            TIME(7)             not null,
+   Datum                datetime             not null,
    constraint PK_PREDSTAVA primary key nonclustered (ID_Film, ID_Dvorane, Cas_Zacetka, Cas_Konca, Datum)
 )
 go
 
 /*==============================================================*/
-/* Index: Predvaja_FK                                           */
+/* Index: predvaja_fk                                           */
 /*==============================================================*/
-create index Predvaja_FK on Predstava (
+create index predvaja_fk on Predstava (
 ID_Film ASC
 )
 go
 
 /*==============================================================*/
-/* Index: Nahaja_v_FK                                           */
+/* Index: nahaja_v_fk                                           */
 /*==============================================================*/
-create index Nahaja_v_FK on Predstava (
+create index nahaja_v_fk on Predstava (
 ID_Dvorane ASC
 )
 go
 
 /*==============================================================*/
-/* Table: Pripada                                               */
+/* Table: Produkcijska_Zalozba                                  */
 /*==============================================================*/
-create table Pripada (
-   ID_Zvrst             int              not null,
-   ID_Film              int              not null,
-   constraint PK_PRIPADA primary key (ID_Zvrst, ID_Film)
-)
-go
-
-/*==============================================================*/
-/* Index: Pripada_FK                                            */
-/*==============================================================*/
-create index Pripada_FK on Pripada (
-ID_Zvrst ASC
-)
-go
-
-/*==============================================================*/
-/* Index: Pripada2_FK                                           */
-/*==============================================================*/
-create index Pripada2_FK on Pripada (
-ID_Film ASC
-)
-go
-
-/*==============================================================*/
-/* Table: "Produkcijska Zalozba"                                */
-/*==============================================================*/
-create table "Produkcijska Zalozba" (
+create table Produkcijska_Zalozba (
    ID_Zalozba           int              identity,
-   Ime                  TEXT            null,
-   constraint "PK_PRODUKCIJSKA ZALOZBA" primary key nonclustered (ID_Zalozba)
+   Ime                  varchar(256)         not null,
+   constraint PK_PRODUKCIJSKA_ZALOZBA primary key nonclustered (ID_Zalozba)
 )
 go
 
@@ -550,27 +424,27 @@ go
 create table Sedez (
    ID_Sedeza            int              identity,
    ID_Dvorane           int              not null,
-   Vrsta                int              null,
-   Stevilka             int              null,
+   Vrsta                int                  not null,
+   Stevilka             int                  not null,
    constraint PK_SEDEZ primary key nonclustered (ID_Sedeza)
 )
 go
 
 /*==============================================================*/
-/* Index: "Se nahaja v_FK"                                      */
+/* Index: v_dvorani_fk                                          */
 /*==============================================================*/
-create index "Se nahaja v_FK" on Sedez (
+create index v_dvorani_fk on Sedez (
 ID_Dvorane ASC
 )
 go
 
 /*==============================================================*/
-/* Table: "Starostna Omejitev"                                  */
+/* Table: Starostna_Omejitev                                    */
 /*==============================================================*/
-create table "Starostna Omejitev" (
+create table Starostna_Omejitev (
    ID_Omejitve          int              identity,
-   Ime                  TEXT            null,
-   constraint "PK_STAROSTNA OMEJITEV" primary key nonclustered (ID_Omejitve)
+   Ime                  varchar(256)         not null,
+   constraint PK_STAROSTNA_OMEJITEV primary key nonclustered (ID_Omejitve)
 )
 go
 
@@ -579,47 +453,17 @@ go
 /*==============================================================*/
 create table Tehnologija (
    ID_Tehnologije       int              identity,
-   Ime_Tehnologije      TEXT            null,
+   Ime_Tehnologije      varchar(256)         not null,
    constraint PK_TEHNOLOGIJA primary key nonclustered (ID_Tehnologije)
 )
 go
 
 /*==============================================================*/
-/* Table: Zaposleni                                             */
+/* Table: Uporabnik                                             */
 /*==============================================================*/
-create table Zaposleni (
-   ID_Zaposleni         int              identity,
-   ID_Naslov            int              not null,
-   ID_Pozicije          int              not null,
-   Ime                  TEXT            not null,
-   "Datum Rojstva"      datetime             not null,
-   Urna_Postavka        float                not null,
-   constraint PK_ZAPOSLENI primary key nonclustered (ID_Zaposleni)
-)
-go
-
-/*==============================================================*/
-/* Index: "Zaposlen na_FK"                                      */
-/*==============================================================*/
-create index "Zaposlen na_FK" on Zaposleni (
-ID_Pozicije ASC
-)
-go
-
-/*==============================================================*/
-/* Index: "Stanuje na_FK"                                       */
-/*==============================================================*/
-create index "Stanuje na_FK" on Zaposleni (
-ID_Naslov ASC
-)
-go
-
-/*==============================================================*/
-/* Table: Zvrst                                                 */
-/*==============================================================*/
-create table Zvrst (
-   ID_Zvrst             int              identity,
-   Ime                  TEXT            null,
-   constraint PK_ZVRST primary key nonclustered (ID_Zvrst)
+create table Uporabnik (
+   username             varchar(256)         not null,
+   password             varchar(256)         not null,
+   constraint PK_UPORABNIK primary key nonclustered (username)
 )
 go

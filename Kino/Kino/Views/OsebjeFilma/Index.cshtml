@@ -16,9 +16,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Ime)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatumRojstva)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -27,9 +24,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Ime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatumRojstva)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdOsebjeFilma">Uredi</a> |

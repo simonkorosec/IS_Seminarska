@@ -12,5 +12,6 @@ namespace Kino.Models
         public TimeSpan CasKonca { get; set; }
         public DateTime Datum { get; set; }
         public double Cena { get; set; }
+        public string Username { get; set; }
     }
 }

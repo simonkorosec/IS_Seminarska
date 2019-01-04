@@ -9,7 +9,5 @@ namespace Kino.Models
 
         [DisplayName("Režiser")]
         public string Ime { get; set; }
-
-        public DateTime DatumRojstva { get; set; }
     }
 }

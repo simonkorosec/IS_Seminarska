@@ -12,21 +12,18 @@ namespace Kino.Models {
 
         public virtual DbSet<Dvorana> Dvorana { get; set; }
         public virtual DbSet<Film> Film { get; set; }
-        public virtual DbSet<IgraV> IgraV { get; set; }
         public virtual DbSet<Karta> Karta { get; set; }
         public virtual DbSet<Kolosej> Kolosej { get; set; }
         public virtual DbSet<Naslov> Naslov { get; set; }
         public virtual DbSet<OsebjeFilma> OsebjeFilma { get; set; }
         public virtual DbSet<Poste> Poste { get; set; }
-        public virtual DbSet<Pozicija> Pozicija { get; set; }
         public virtual DbSet<Predstava> Predstava { get; set; }
-        public virtual DbSet<Pripada> Pripada { get; set; }
         public virtual DbSet<ProdukcijskaZalozba> ProdukcijskaZalozba { get; set; }
         public virtual DbSet<Sedez> Sedez { get; set; }
         public virtual DbSet<StarostnaOmejitev> StarostnaOmejitev { get; set; }
         public virtual DbSet<Tehnologija> Tehnologija { get; set; }
-        public virtual DbSet<Zaposleni> Zaposleni { get; set; }
-        public virtual DbSet<Zvrst> Zvrst { get; set; }
+        public virtual DbSet<Uporabnik> Uporabnik { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             if (!optionsBuilder.IsConfigured) {
@@ -42,10 +39,10 @@ namespace Kino.Models {
                     .ForSqlServerIsClustered(false);
 
                 entity.HasIndex(e => e.IdKolosej)
-                    .HasName("Ima_FK");
+                    .HasName("ima_fk");
 
                 entity.HasIndex(e => e.IdTehnologije)
-                    .HasName("Uporablja_FK");
+                    .HasName("uporablja_fk");
 
                 entity.Property(e => e.IdDvorane).HasColumnName("ID_Dvorane");
 
@@ -55,7 +52,7 @@ namespace Kino.Models {
 
                 entity.Property(e => e.Ime)
                     .IsRequired()
-                    .HasMaxLength(100)
+                    .HasMaxLength(256)
                     .IsUnicode(false);
 
                 entity.Property(e => e.StSedezovNaVrsto).HasColumnName("st_sedezov_na_vrsto");
@@ -68,13 +65,13 @@ namespace Kino.Models {
                     .ForSqlServerIsClustered(false);
 
                 entity.HasIndex(e => e.IdOmejitve)
-                    .HasName("Omejitev_FK");
+                    .HasName("omejitev_fk");
 
                 entity.HasIndex(e => e.IdOsebjeFilma)
-                    .HasName("Reziseral_FK");
+                    .HasName("reziseral_fk");
 
                 entity.HasIndex(e => e.IdZalozba)
-                    .HasName("Produciral_FK");
+                    .HasName("produciral_fk");
 
                 entity.Property(e => e.IdFilm).HasColumnName("ID_Film");
 
@@ -88,33 +85,21 @@ namespace Kino.Models {
 
                 entity.Property(e => e.Naslov)
                     .IsRequired()
-                    .HasColumnType("text");
-            });
-
-            modelBuilder.Entity<IgraV>(entity => {
-                entity.HasKey(e => new {e.IdFilm, e.IdOsebjeFilma});
-
-                entity.ToTable("Igra_v");
-
-                entity.HasIndex(e => e.IdFilm)
-                    .HasName("Igra_v_FK");
-
-                entity.HasIndex(e => e.IdOsebjeFilma)
-                    .HasName("Igra_v2_FK");
-
-                entity.Property(e => e.IdFilm).HasColumnName("ID_Film");
-
-                entity.Property(e => e.IdOsebjeFilma).HasColumnName("ID_Osebje_Filma");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Karta>(entity => {
                 entity.HasKey(e => new {e.IdSedeza, e.IdFilm, e.IdDvorane, e.CasZacetka, e.CasKonca, e.Datum});
 
                 entity.HasIndex(e => e.IdSedeza)
-                    .HasName("Velja za_FK");
+                    .HasName("velja_fk");
+
+                entity.HasIndex(e => e.Username)
+                    .HasName("kupil_fk");
 
                 entity.HasIndex(e => new {e.IdFilm, e.IdDvorane, e.CasZacetka, e.CasKonca, e.Datum})
-                    .HasName("Velja_za_predstavo_FK");
+                    .HasName("velja_za_predstavo_fk");
 
                 entity.Property(e => e.IdSedeza).HasColumnName("ID_Sedeza");
 
@@ -126,7 +111,13 @@ namespace Kino.Models {
 
                 entity.Property(e => e.CasKonca).HasColumnName("Cas_Konca");
 
-                entity.Property(e => e.Datum).HasColumnType("date");
+                entity.Property(e => e.Datum).HasColumnType("datetime");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasColumnName("username")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Kolosej>(entity => {
@@ -134,13 +125,20 @@ namespace Kino.Models {
                     .ForSqlServerIsClustered(false);
 
                 entity.HasIndex(e => e.IdNaslov)
-                    .HasName("Nahaja se na_FK");
+                    .HasName("nahaja_na_fk");
 
                 entity.Property(e => e.IdKolosej).HasColumnName("ID_Kolosej");
 
                 entity.Property(e => e.IdNaslov).HasColumnName("ID_Naslov");
 
-                entity.Property(e => e.Ime).HasColumnType("text");
+                entity.Property(e => e.Ime)
+                    .IsRequired()
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OwnerId)
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Naslov>(entity => {
@@ -148,7 +146,7 @@ namespace Kino.Models {
                     .ForSqlServerIsClustered(false);
 
                 entity.HasIndex(e => e.StPoste)
-                    .HasName("Nahaja v_FK");
+                    .HasName("nahaja_fk");
 
                 entity.Property(e => e.IdNaslov).HasColumnName("ID_Naslov");
 
@@ -158,7 +156,8 @@ namespace Kino.Models {
 
                 entity.Property(e => e.Ulica)
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<OsebjeFilma>(entity => {
@@ -169,13 +168,10 @@ namespace Kino.Models {
 
                 entity.Property(e => e.IdOsebjeFilma).HasColumnName("ID_Osebje_Filma");
 
-                entity.Property(e => e.DatumRojstva)
-                    .HasColumnName("Datum_Rojstva")
-                    .HasColumnType("date");
-
                 entity.Property(e => e.Ime)
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Poste>(entity => {
@@ -188,19 +184,8 @@ namespace Kino.Models {
 
                 entity.Property(e => e.Kraj)
                     .IsRequired()
-                    .HasColumnType("text");
-            });
-
-            modelBuilder.Entity<Pozicija>(entity => {
-                entity.HasKey(e => e.IdPozicije)
-                    .ForSqlServerIsClustered(false);
-
-                entity.Property(e => e.IdPozicije).HasColumnName("ID_Pozicije");
-
-                entity.Property(e => e.ImePozicije)
-                    .IsRequired()
-                    .HasColumnName("Ime_Pozicije")
-                    .HasColumnType("text");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Predstava>(entity => {
@@ -208,10 +193,10 @@ namespace Kino.Models {
                     .ForSqlServerIsClustered(false);
 
                 entity.HasIndex(e => e.IdDvorane)
-                    .HasName("Nahaja_v_FK");
+                    .HasName("nahaja_v_fk");
 
                 entity.HasIndex(e => e.IdFilm)
-                    .HasName("Predvaja_FK");
+                    .HasName("predvaja_fk");
 
                 entity.Property(e => e.IdFilm).HasColumnName("ID_Film");
 
@@ -221,21 +206,7 @@ namespace Kino.Models {
 
                 entity.Property(e => e.CasKonca).HasColumnName("Cas_Konca");
 
-                entity.Property(e => e.Datum).HasColumnType("date");
-            });
-
-            modelBuilder.Entity<Pripada>(entity => {
-                entity.HasKey(e => new {e.IdZvrst, e.IdFilm});
-
-                entity.HasIndex(e => e.IdFilm)
-                    .HasName("Pripada2_FK");
-
-                entity.HasIndex(e => e.IdZvrst)
-                    .HasName("Pripada_FK");
-
-                entity.Property(e => e.IdZvrst).HasColumnName("ID_Zvrst");
-
-                entity.Property(e => e.IdFilm).HasColumnName("ID_Film");
+                entity.Property(e => e.Datum).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<ProdukcijskaZalozba>(entity => {
@@ -244,12 +215,12 @@ namespace Kino.Models {
 
                 entity.ToTable("Produkcijska_Zalozba");
 
-                entity.Property(e => e.IdZalozba)
-                    .HasColumnName("ID_Zalozba");
+                entity.Property(e => e.IdZalozba).HasColumnName("ID_Zalozba");
 
                 entity.Property(e => e.Ime)
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Sedez>(entity => {
@@ -257,7 +228,7 @@ namespace Kino.Models {
                     .ForSqlServerIsClustered(false);
 
                 entity.HasIndex(e => e.IdDvorane)
-                    .HasName("Se nahaja v_FK");
+                    .HasName("v_dvorani_fk");
 
                 entity.Property(e => e.IdSedeza).HasColumnName("ID_Sedeza");
 
@@ -274,7 +245,8 @@ namespace Kino.Models {
 
                 entity.Property(e => e.Ime)
                     .IsRequired()
-                    .HasColumnType("text");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Tehnologija>(entity => {
@@ -286,47 +258,25 @@ namespace Kino.Models {
                 entity.Property(e => e.ImeTehnologije)
                     .IsRequired()
                     .HasColumnName("Ime_Tehnologije")
-                    .HasColumnType("text");
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Zaposleni>(entity => {
-                entity.HasKey(e => e.IdZaposleni)
+            modelBuilder.Entity<Uporabnik>(entity => {
+                entity.HasKey(e => e.Username)
                     .ForSqlServerIsClustered(false);
 
-                entity.HasIndex(e => e.IdNaslov)
-                    .HasName("Stanuje na_FK");
-
-                entity.HasIndex(e => e.IdPozicije)
-                    .HasName("Zaposlen na_FK");
-
-                entity.Property(e => e.IdZaposleni)
-                    .HasColumnName("ID_Zaposleni")
+                entity.Property(e => e.Username)
+                    .HasColumnName("username")
+                    .HasMaxLength(256)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.DatumRojstva)
-                    .HasColumnName("Datum_Rojstva")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.IdNaslov).HasColumnName("ID_Naslov");
-
-                entity.Property(e => e.IdPozicije).HasColumnName("ID_Pozicije");
-
-                entity.Property(e => e.Ime)
+                entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasColumnType("text");
-
-                entity.Property(e => e.UrnaPostavka).HasColumnName("Urna_Postavka");
-            });
-
-            modelBuilder.Entity<Zvrst>(entity => {
-                entity.HasKey(e => e.IdZvrst)
-                    .ForSqlServerIsClustered(false);
-
-                entity.Property(e => e.IdZvrst).HasColumnName("ID_Zvrst");
-
-                entity.Property(e => e.Ime)
-                    .IsRequired()
-                    .HasColumnType("text");
+                    .HasColumnName("password")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
             });
         }
     }
