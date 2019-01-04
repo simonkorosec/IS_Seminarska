@@ -118,8 +118,7 @@
     "casZacetka": "11:10:00",
     "casKonca": "13:10:00",
     "datum": "2019-01-04",
-    "cena": 5.6,
-    "username": "user-id"
+    "cena": 5.6
   }
 ]
 ```
