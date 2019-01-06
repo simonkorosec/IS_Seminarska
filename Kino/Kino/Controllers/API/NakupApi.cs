@@ -1,12 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Kino.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Kino.Controllers.API {
     [Route("api/[controller]")]

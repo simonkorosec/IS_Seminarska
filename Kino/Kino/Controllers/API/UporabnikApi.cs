@@ -39,7 +39,7 @@ namespace Kino.Controllers.API {
                 returnKarte.AddFirst(new KartaPodatki() {
                     IdSedeza = karta.IdSedeza,
                     IdDvorane = karta.IdDvorane,
-                    Naslov = _context.Film.First(e => e.IdFilm == karta.IdFilm).Naslov,
+                    Naslov = _context.Film.FirstOrDefault(e => e.IdFilm == karta.IdFilm)?.Naslov,
                     CasZacetka = karta.CasZacetka.ToString(),
                     CasKonca = karta.CasKonca.ToString(),
                     Datum = karta.Datum.ToString(CultureInfo.GetCultureInfo("si-SI")).Split(" ")[0],
