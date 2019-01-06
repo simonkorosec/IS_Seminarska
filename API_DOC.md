@@ -113,8 +113,8 @@
 [
   {
     "idSedeza": 1,
-    "idFilm": 1,
     "idDvorane": 1,
+    "Naslov": "Batman: Begins",
     "casZacetka": "11:10:00",
     "casKonca": "13:10:00",
     "datum": "2019-01-04",
