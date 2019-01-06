@@ -6,6 +6,7 @@ import myapp.kinoisseminarska.dataholder.Seat;
 import myapp.kinoisseminarska.dataholder.SeatQuery;
 import myapp.kinoisseminarska.dataholder.Show;
 import myapp.kinoisseminarska.dataholder.TicketData;
+import myapp.kinoisseminarska.dataholder.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -38,6 +39,18 @@ public class RestManagment {
         return myRetrofit
                 .create(MakeTicketOrder.class)
                 .makeTicketOrder(myTicket);
+    }
+
+    public static Call<ResponseBody> loginUser(User user) {
+        return myRetrofit
+                .create(LoginUser.class)
+                .loginUser(user);
+    }
+
+    public static Call<ResponseBody> registerUser(User user) {
+        return myRetrofit
+                .create(RegisterUser.class)
+                .registerUser(user);
     }
 
 
