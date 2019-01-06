@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Kino.Controllers.API {
     public class KartaPodatki {
         public int IdSedeza { get; set; }
-        public int IdFilm { get; set; }
         public int IdDvorane { get; set; }
+        public string Naslov { get; set; }
         public string CasZacetka { get; set; }
         public string CasKonca { get; set; }
         public string Datum { get; set; }
@@ -39,7 +39,7 @@ namespace Kino.Controllers.API {
                 returnKarte.AddFirst(new KartaPodatki() {
                     IdSedeza = karta.IdSedeza,
                     IdDvorane = karta.IdDvorane,
-                    IdFilm = karta.IdFilm,
+                    Naslov = _context.Film.First(e => e.IdFilm == karta.IdFilm).Naslov,
                     CasZacetka = karta.CasZacetka.ToString(),
                     CasKonca = karta.CasKonca.ToString(),
                     Datum = karta.Datum.ToString(CultureInfo.GetCultureInfo("si-SI")).Split(" ")[0],
