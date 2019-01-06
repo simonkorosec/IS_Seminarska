@@ -105,7 +105,7 @@
 - HTTP.400 if wrong password
 ---
 ## Karte od uporabnika
-- `api/UporabnikApi/{user-id}`
+- `api/UporabnikApi/{username}`
 - GET
 
 #### Return
