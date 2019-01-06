@@ -15,6 +15,7 @@ import myapp.kinoisseminarska.R;
 import myapp.kinoisseminarska.dataholder.Seat;
 import myapp.kinoisseminarska.dataholder.Show;
 import myapp.kinoisseminarska.dataholder.TicketData;
+import myapp.kinoisseminarska.utils.ContentStore;
 import myapp.kinoisseminarska.webservices.RestManagment;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -71,6 +72,10 @@ public class OrderTicketActivity extends AppCompatActivity {
                 myTicket.setCasKonca(passedShow.getCasKonca());
                 myTicket.setDatum(passedShow.getDatum());
                 myTicket.setCena(myPrice);
+
+                ContentStore cntStore = new ContentStore(getApplicationContext());
+                myTicket.setUsername(cntStore.getUsername());
+                Log.d("test_is", myTicket.getUsername() + " ticket username");
 
                 nakupButton.setOnClickListener(new View.OnClickListener() {
                     @Override

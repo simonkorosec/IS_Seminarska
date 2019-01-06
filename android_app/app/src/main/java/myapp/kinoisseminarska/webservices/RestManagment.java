@@ -2,6 +2,7 @@ package myapp.kinoisseminarska.webservices;
 
 import java.util.List;
 
+import myapp.kinoisseminarska.dataholder.ReturnTicketData;
 import myapp.kinoisseminarska.dataholder.Seat;
 import myapp.kinoisseminarska.dataholder.SeatQuery;
 import myapp.kinoisseminarska.dataholder.Show;
@@ -51,6 +52,12 @@ public class RestManagment {
         return myRetrofit
                 .create(RegisterUser.class)
                 .registerUser(user);
+    }
+
+    public static Call<List<ReturnTicketData>> getAllTicketsByUser(String username) {
+        return myRetrofit
+                .create(GetAllTicketsByUser.class)
+                .getAllTicketsByUser(username);
     }
 
 

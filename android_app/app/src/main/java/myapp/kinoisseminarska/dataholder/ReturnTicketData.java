@@ -1,15 +1,16 @@
 package myapp.kinoisseminarska.dataholder;
 
+
 import com.squareup.moshi.Json;
 
-public class TicketData {
+public class ReturnTicketData {
 
-    @Json(name = "idFilm")
-    private int idFilm;
-    @Json(name = "idDvorane")
-    private int idDvorane;
     @Json(name = "idSedeza")
     private int idSedeza;
+    @Json(name = "idDvorane")
+    private int idDvorane;
+    @Json(name = "naslov")
+    private String naslov;
     @Json(name = "casZacetka")
     private String casZacetka;
     @Json(name = "casKonca")
@@ -18,15 +19,13 @@ public class TicketData {
     private String datum;
     @Json(name = "cena")
     private float cena;
-    @Json(name = "username")
-    private String username;
 
-    public int getIdFilm() {
-        return idFilm;
+    public int getIdSedeza() {
+        return idSedeza;
     }
 
-    public void setIdFilm(int idFilm) {
-        this.idFilm = idFilm;
+    public void setIdSedeza(int idSedeza) {
+        this.idSedeza = idSedeza;
     }
 
     public int getIdDvorane() {
@@ -37,12 +36,12 @@ public class TicketData {
         this.idDvorane = idDvorane;
     }
 
-    public int getIdSedeza() {
-        return idSedeza;
+    public String getNaslov() {
+        return naslov;
     }
 
-    public void setIdSedeza(int idSedeza) {
-        this.idSedeza = idSedeza;
+    public void setNaslov(String naslov) {
+        this.naslov = naslov;
     }
 
     public String getCasZacetka() {
@@ -77,11 +76,4 @@ public class TicketData {
         this.cena = cena;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
