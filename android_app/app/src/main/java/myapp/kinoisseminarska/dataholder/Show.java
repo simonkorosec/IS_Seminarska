@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class Show implements Serializable {
 
-    @Json(name = "idFilma")
+    @Json(name = "idFilm")
     private int idFilma;
     @Json(name = "naslovFilma")
     private String naslovFilma;
@@ -87,4 +87,15 @@ public class Show implements Serializable {
         this.datum = datum;
     }
 
+    @Override
+    public String toString() {
+        return "id filma : " + getIdFilma() +
+                "id dvorane : " + getImeDvorane() +
+                "ime koloseja: " + getImeKoloseja() +
+                "naslov filma:  " + getNaslovFilma() +
+                "datum: " + getDatum() +
+                "id dovrane: " + getImeDvorane() +
+                "cas konca: " + getCasKonca() +
+                "cas zacetka: " + getCasZacetka();
+    }
 }

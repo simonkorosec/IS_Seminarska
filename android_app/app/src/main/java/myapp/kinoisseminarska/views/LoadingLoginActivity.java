@@ -27,8 +27,8 @@ public class LoadingLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_login);
 
-        loadingText = findViewById(R.id.loadingText);
 
+        loadingText = findViewById(R.id.loadingText);
         Intent myIntent = getIntent();
         if(myIntent != null) {
 
@@ -49,7 +49,6 @@ public class LoadingLoginActivity extends AppCompatActivity {
             else
                 Log.d("test_is", "loading login failed");
         }
-
     }
 
     private void loginUserAPICall(final User user) {
@@ -67,8 +66,8 @@ public class LoadingLoginActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(getApplicationContext(),
-                            "Wrong password or username!", Toast.LENGTH_SHORT).show();
-                    Log.d("test_is", "wrong password!");
+                            "Invalid password or username!", Toast.LENGTH_SHORT).show();
+                    Log.d("test_is", "invalid password or username!");
                     finish();
                 }
             }
